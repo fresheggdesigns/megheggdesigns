@@ -147,6 +147,45 @@ export const siteConfig = {
     ] as const,
   },
 
+  caseStudies: {
+    label: "HOW I WORK",
+    heading: "Featured Case Studies",
+    subtitle:
+      "Deep-dives into strategic product challenges and how I approach solving them.",
+    projects: [
+      {
+        slug: "clientelling-app",
+        title: "Clientelling App",
+        category: "Sales & Service",
+        description:
+          "Transformed complex workflow tool through chunking and progressive disclosure, dramatically improving training and adoption.",
+        impact: "XX% training time reduction | XX% error reduction | Power user satisfaction",
+        image: "/CaseStudyThumbnails/ClientellingThumbnail.png",
+        href: "/case-studies/clientelling-app",
+      },
+      {
+        slug: "footwear-request-app",
+        title: "Footwear Request App",
+        category: "Patented Mobile Innovation",
+        description:
+          "Drove record-breaking sales through mobile-first shopping experience that reimagined how associates serve customers.",
+        impact: "43% volume increase | 28% conversion lift | Patent granted",
+        image: "/CaseStudyThumbnails/FootwearThumbnail.png",
+        href: "/case-studies/footwear-request-app",
+      },
+      {
+        slug: "design-system-transformation",
+        title: "Design System Transformation",
+        category: "Scaling Consistency Across Teams",
+        description:
+          "Built governance model and semantic architecture enabling 9 teams to move faster while maintaining experience quality.",
+        impact: "25% adoption increase | 40% component reduction | 2-week faster delivery",
+        image: "/CaseStudyThumbnails/DesignSystemThumbnail.png",
+        href: "/case-studies/design-system-transformation",
+      },
+    ] as const,
+  },
+
   nav: [
     { label: "Home", href: "#home" },
     { label: "About Me", href: "#about" },
