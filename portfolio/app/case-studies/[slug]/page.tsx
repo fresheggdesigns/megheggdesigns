@@ -1,7 +1,21 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Layers,
+  LayoutDashboard,
+  LayoutGrid,
+  Smartphone,
+  type LucideIcon,
+} from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+
+const STRATEGIC_CHALLENGE_ICONS: Record<string, LucideIcon> = {
+  layers: Layers,
+  smartphone: Smartphone,
+  "layout-dashboard": LayoutDashboard,
+  "layout-grid": LayoutGrid,
+};
 
 type CaseStudySlug = keyof typeof siteConfig.caseStudyDetails;
 
@@ -29,12 +43,16 @@ export default async function CaseStudyPage({
   if (!details) notFound();
 
   const project = siteConfig.caseStudies.projects.find((p) => p.slug === slug);
-  const imageSrc = project?.image ?? "/CaseStudyThumbnails/ClientellingThumbnail.png";
+  const caseStudyWithHero = details as typeof details & { heroImage?: string };
+  const imageSrc =
+    caseStudyWithHero.heroImage ??
+    project?.image ??
+    "/CaseStudyThumbnails/ClientellingThumbnail.png";
 
   return (
     <article className="bg-white">
       {/* Hero */}
-      <section className="px-6 py-16 md:py-24">
+      <section className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#33b8bc]">
@@ -68,7 +86,7 @@ export default async function CaseStudyPage({
               src={imageSrc}
               alt=""
               fill
-              className="object-cover"
+              className="object-contain"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -78,49 +96,127 @@ export default async function CaseStudyPage({
 
       {/* Impact at a Glance */}
       <section
-        className="px-6 py-16"
-        style={{ backgroundColor: "var(--nav)" }}
+        className="bg-white px-6 pt-8 pb-16"
         aria-label="Impact at a Glance"
       >
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-white/90">
+          <h2
+            className="text-xs font-semibold uppercase tracking-wider"
+            style={{ color: "var(--hero-accent)" }}
+          >
             Impact at a Glance
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {details.metrics.map((metric) => (
               <div
                 key={metric.description}
-                className="rounded-lg bg-white/10 p-6 text-white"
+                className="rounded-xl p-6 text-white"
+                style={{ backgroundColor: "var(--nav)" }}
               >
                 <p className="text-2xl font-bold md:text-3xl">{metric.value}</p>
-                <p className="mt-2 text-sm text-white/90">{metric.description}</p>
+                <p className="mt-2 text-sm font-normal text-white/90">
+                  {metric.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Business Context */}
+      {/* Business Challenge */}
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <h2
+            className="text-xs font-semibold uppercase tracking-wider"
+            style={{ color: "var(--hero-accent)" }}
+          >
+            Business Challenge
+          </h2>
+          <div className="mt-8 grid gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-lg font-bold text-foreground">
+              <h3 className="text-xl font-bold tracking-tight text-foreground">
                 Strategic Context
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                {details.strategicContext}
-              </p>
+              </h3>
+              <div className="mt-4 space-y-4">
+                {(Array.isArray(details.strategicContext)
+                  ? details.strategicContext
+                  : [details.strategicContext]
+                ).map((para, i) => (
+                  <p key={i} className="text-muted-foreground leading-relaxed">
+                    {para}
+                  </p>
+                ))}
+              </div>
             </div>
             <div>
-              <h2 className="text-lg font-bold text-foreground">
+              <h3 className="text-xl font-bold tracking-tight text-foreground">
                 Business Problem
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                {details.businessProblem}
-              </p>
+              </h3>
+              <div className="mt-4 space-y-4">
+                {(Array.isArray(details.businessProblem)
+                  ? details.businessProblem
+                  : [details.businessProblem]
+                ).map((para, i) => (
+                  <p key={i} className="text-muted-foreground leading-relaxed">
+                    {para}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
+
+          {(() => {
+            const challenges = (details as typeof details & { strategicChallenges?: { label: string; heading: string; challenges: { title: string; description: string; icon: string }[] } }).strategicChallenges;
+            if (!challenges) return null;
+            return (
+              <section
+                className="mt-20 pt-16 md:pt-20"
+                aria-label="My Strategic Challenge"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {challenges.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {challenges.heading}
+                  </h2>
+                </div>
+                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                  {challenges.challenges.map((challenge) => {
+                    const IconComponent =
+                      STRATEGIC_CHALLENGE_ICONS[challenge.icon] ?? Layers;
+                    return (
+                      <div
+                        key={challenge.title}
+                        className="flex flex-col items-center text-center"
+                      >
+                        <div
+                          className="flex h-12 w-12 items-center justify-center"
+                          aria-hidden
+                        >
+                          <IconComponent
+                            className="h-10 w-10 shrink-0 stroke-[1.5]"
+                            style={{ color: "var(--hero-accent)" }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                          {challenge.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                          {challenge.description}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })()}
+
           <div className="mt-16 text-center">
             <Link
               href="/#case-studies"

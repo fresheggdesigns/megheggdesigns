@@ -183,6 +183,7 @@ export const siteConfig = {
 
   caseStudyDetails: {
     "clientelling-app": {
+      heroImage: "/Clientelling/SidelineAssist-Frames 1.png",
       category: "Retail Innovation",
       title: "Clientelling App",
       subtitle:
@@ -205,10 +206,44 @@ export const siteConfig = {
           description: "for DICK's in-store digital strategy",
         },
       ],
-      strategicContext:
-        "DICK'S Sporting Goods is committed to creating a best-in-class in-store experience that blends digital and physical retail. The Clientelling App represents a strategic investment in equipping store associates with the tools they need to serve customers more effectively, drive sales, and differentiate the in-store experience.",
-      businessProblem:
-        "Associates faced inconsistent product information across channels, missed opportunities for personalized recommendations, and lacked streamlined tools to look up inventory and complete transactions. This led to friction in the customer journey and lost conversion opportunities.",
+      strategicContext: [
+        "DICK'S Sporting Goods was investing heavily in transforming the in-store experience, but associates' tools were outdated & couldn't compete with online shopping offerings.",
+        "Customers expected instant product knowledge, personalized recommendations, and seamless service, but associates were relying on fragmented systems, memory, and outdated handhelds.",
+      ],
+      businessProblem: [
+        "Store associates couldn't deliver the elevated, personalized service DICK'S brand demanded.",
+        "Without consolidated product information, loyalty data, and intelligent recommendations, we were losing sales opportunities and failing to build lasting customer relationships.",
+      ],
+      strategicChallenges: {
+        label: "My Strategic Challenge",
+        heading: "I was brought in specifically to:",
+        challenges: [
+          {
+            title: "Define Product Vision",
+            description:
+              "for what would become Dick's primary sales & service platform",
+            icon: "layers",
+          },
+          {
+            title: "Lead Research & Discovery",
+            description:
+              "to understand real associate needs vs. assumed requirements",
+            icon: "smartphone",
+          },
+          {
+            title: "Cross-Team Collaboration",
+            description:
+              "across 9 product teams and align on shared infrastructure",
+            icon: "layout-dashboard",
+          },
+          {
+            title: "Design for Scale",
+            description:
+              "knowing this would serve 15K+ associates across 850 stores",
+            icon: "layout-grid",
+          },
+        ],
+      },
     },
   } as const,
 
