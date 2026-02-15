@@ -5,17 +5,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const NAV_BAR_HEIGHT = 72;
 
 export function Navigation() {
+  const pathname = usePathname();
+  const isCaseStudyPage = pathname?.startsWith("/case-studies");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeId, setActiveId] = useState<string | null>("home");
+  const [activeId, setActiveId] = useState<string | null>(
+    isCaseStudyPage ? "case-studies" : "home"
+  );
 
   useEffect(() => {
+    if (isCaseStudyPage) {
+      setActiveId("case-studies");
+      return;
+    }
     const onScroll = () => {
       setScrolled(window.scrollY > 16);
       const sections = siteConfig.nav
@@ -34,7 +43,7 @@ export function Navigation() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isCaseStudyPage]);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -65,32 +74,70 @@ export function Navigation() {
           aria-label="Main navigation"
         >
           {/* Logo - left */}
-          <Link
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#home");
-            }}
-            className="flex shrink-0 items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-nav-active focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full"
-            aria-label={`${siteConfig.name} - Home`}
-          >
-            <Image
-              src="/megHegg-Logo.png"
-              alt=""
-              width={40}
-              height={40}
-              className="h-10 w-10 shrink-0 rounded-full object-contain"
-            />
-            <span className="hidden font-medium text-white/95 sm:inline">
-              {siteConfig.name}
-            </span>
-          </Link>
+          {isCaseStudyPage ? (
+            <Link
+              href="/"
+              className="flex shrink-0 items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-nav-active focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full"
+              aria-label={`${siteConfig.name} - Home`}
+            >
+              <Image
+                src="/megHegg-Logo.png"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 shrink-0 rounded-full object-contain"
+              />
+              <span className="hidden font-medium text-white/95 sm:inline">
+                {siteConfig.name}
+              </span>
+            </Link>
+          ) : (
+            <Link
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#home");
+              }}
+              className="flex shrink-0 items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-nav-active focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full"
+              aria-label={`${siteConfig.name} - Home`}
+            >
+              <Image
+                src="/megHegg-Logo.png"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 shrink-0 rounded-full object-contain"
+              />
+              <span className="hidden font-medium text-white/95 sm:inline">
+                {siteConfig.name}
+              </span>
+            </Link>
+          )}
 
           {/* Desktop menu */}
           <ul className="hidden items-center gap-1 md:flex" role="list">
             {siteConfig.nav.map((item) => {
               const id = item.href === "#home" ? "home" : item.href.slice(1);
               const isActive = activeId === id;
+              if (isCaseStudyPage) {
+                const navHref = item.href === "#home" ? "/" : `/${item.href}`;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={navHref}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "block rounded-full px-4 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white",
+                        isActive &&
+                          "bg-nav-active text-white shadow-nav-pill"
+                      )}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              }
               return (
                 <li key={item.href}>
                   <button
@@ -159,6 +206,7 @@ export function Navigation() {
                 {siteConfig.nav.map((item, index) => {
                   const id = item.href === "#home" ? "home" : item.href.slice(1);
                   const isActive = activeId === id;
+                  const navHref = item.href === "#home" ? "/" : `/${item.href}`;
                   return (
                     <motion.li
                       key={item.href}
@@ -171,17 +219,31 @@ export function Navigation() {
                         ease: [0.25, 0.46, 0.45, 0.94],
                       }}
                     >
-                      <button
-                        type="button"
-                        onClick={() => handleNavClick(item.href)}
-                        className={cn(
-                          "w-full rounded-full px-4 py-3 text-left text-base font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white",
-                          isActive && "bg-nav-active text-white"
-                        )}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        {item.label}
-                      </button>
+                      {isCaseStudyPage ? (
+                        <Link
+                          href={navHref}
+                          onClick={() => setMobileOpen(false)}
+                          className={cn(
+                            "block w-full rounded-full px-4 py-3 text-left text-base font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white",
+                            isActive && "bg-nav-active text-white"
+                          )}
+                          aria-current={isActive ? "page" : undefined}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleNavClick(item.href)}
+                          className={cn(
+                            "w-full rounded-full px-4 py-3 text-left text-base font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white",
+                            isActive && "bg-nav-active text-white"
+                          )}
+                          aria-current={isActive ? "page" : undefined}
+                        >
+                          {item.label}
+                        </button>
+                      )}
                     </motion.li>
                   );
                 })}
