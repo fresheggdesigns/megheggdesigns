@@ -99,6 +99,54 @@ export const siteConfig = {
     ] as const,
   },
 
+  impact: {
+    heading: "Measurable Impact",
+    stats: [
+      {
+        value: 15000,
+        prefix: "",
+        suffix: "+",
+        format: "number",
+        description: "Store Associates using platforms I design daily",
+      },
+      {
+        value: 1,
+        prefix: "",
+        suffix: "",
+        format: "number",
+        description: "Patent application submitted for retail innovation",
+      },
+      {
+        value: 9,
+        prefix: "",
+        suffix: "+",
+        format: "number",
+        description: "Product teams using components & patterns I built",
+      },
+      {
+        value: 25,
+        prefix: "",
+        suffix: "%",
+        format: "number",
+        description: "Increase in Design System adoption (FY'24)",
+      },
+      {
+        value: 40,
+        prefix: "",
+        suffix: "%",
+        format: "number",
+        description: "Reduction in development redundancy",
+      },
+      {
+        value: 2,
+        prefix: "$",
+        suffix: "M+",
+        format: "compact",
+        description: "Annual transactions through platforms I lead",
+      },
+    ] as const,
+  },
+
   nav: [
     { label: "Home", href: "#home" },
     { label: "About Me", href: "#about" },
