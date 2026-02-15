@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 const staggerDelay = 50;
@@ -24,7 +22,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[85vh] overflow-hidden px-6 py-24 md:min-h-[90vh]"
+      className="relative overflow-hidden px-6 py-16 md:py-24"
       aria-label="Home"
     >
       {/* Background: subtle gradient + optional noise */}
@@ -80,45 +78,16 @@ export function Hero() {
             {siteConfig.hero.subtitle}
           </motion.p>
 
-          <motion.ul
+          <motion.p
             custom={4}
             variants={fadeIn}
             initial="initial"
             animate="animate"
-            className="flex flex-col gap-2 py-2"
-            role="list"
+            className="text-muted-foreground"
           >
-            {siteConfig.hero.points.map((point) => (
-              <li
-                key={point}
-                className="flex items-center gap-3 text-muted-foreground"
-              >
-                <Check
-                  className="h-5 w-5 shrink-0"
-                  style={{ color: "var(--hero-accent)" }}
-                  aria-hidden
-                />
-                <span>{point}</span>
-              </li>
-            ))}
-          </motion.ul>
+            {siteConfig.hero.body}
+          </motion.p>
 
-          <motion.div
-            custom={5}
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-          >
-            <Link
-              href={siteConfig.hero.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-foreground/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--hero-accent)] focus-visible:ring-offset-2"
-            >
-              {siteConfig.hero.cta.label}
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
-            </Link>
-          </motion.div>
         </div>
 
         {/* Right column - 40% */}

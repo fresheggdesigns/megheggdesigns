@@ -57,17 +57,15 @@ export function StrategicFocus() {
                   delay: 0.15 + index * 0.1,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="group flex flex-col rounded-lg border border-border bg-muted/40 p-6 text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-foreground/5"
+                className="flex flex-col rounded-lg bg-muted/40 p-6 text-left"
               >
-                <div className="flex flex-col items-center">
-                  <motion.div
+                <div className="flex flex-col items-start">
+                  <div
                     className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg"
                     style={{ backgroundColor: "var(--hero-accent)" }}
-                    whileHover={{ rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   >
                     <IconComponent className="h-6 w-6 text-white" aria-hidden />
-                  </motion.div>
+                  </div>
                   <div
                     className="mt-3 h-0.5 w-12"
                     style={{ backgroundColor: "var(--hero-accent)" }}
@@ -75,12 +73,12 @@ export function StrategicFocus() {
                   />
                 </div>
                 <p
-                  className="mt-4 text-center text-xs font-semibold uppercase tracking-wider"
+                  className="mt-4 text-xs font-semibold uppercase tracking-wider"
                   style={{ color: "var(--hero-accent)" }}
                 >
                   {card.category}
                 </p>
-                <h3 className="mt-2 text-center text-xl font-bold text-foreground">
+                <h3 className="mt-2 text-xl font-bold text-foreground">
                   {card.title}
                 </h3>
                 <p className="mt-4 flex-1 text-sm text-muted-foreground">

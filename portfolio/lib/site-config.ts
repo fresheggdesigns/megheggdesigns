@@ -12,12 +12,7 @@ export const siteConfig = {
     name: "Megan Hegg",
     title: "Senior Product Designer",
     subtitle: "Strategy-Driven | Systems Thinker | Innovation Leader",
-    points: [
-      "User-centered problem solving",
-      "Business goals aligned with design",
-      "Technical feasibility awareness",
-      "Scaling for 15,000+ associates and millions of customers",
-    ],
+    body: "I solve complex problems at the intersection of user needs, business goals, and technical constraints, leading product vision for platforms serving 15,000+ associates and millions of customers.",
     cta: {
       label: "@MEGANHAAG",
       href: "https://linkedin.com/in/meganhaag",
@@ -35,7 +30,7 @@ export const siteConfig = {
         years: "2019 - 2020",
         title: "UX Designer",
         description: "Designed a digital banking native Mobile App and internal tools",
-        iconBg: "navy",
+        logo: "/CompanyLogos/BBVA.png",
       },
       {
         company: "Leap Technology",
@@ -43,7 +38,7 @@ export const siteConfig = {
         title: "UX Designer",
         description:
           "Drove UX transformation for event management platforms serving NFL, Disney, and enterprise clients",
-        iconBg: "dark",
+        logo: "/CompanyLogos/LeapTech.png",
       },
       {
         company: "DICK'S Sporting Goods",
@@ -51,7 +46,7 @@ export const siteConfig = {
         title: "Senior Product Designer",
         description:
           "Leading product strategy for footwear platforms, design systems, and innovation pipeline",
-        iconBg: "teal",
+        logo: "/CompanyLogos/DSG.png",
       },
     ] as const,
   },
@@ -229,7 +224,7 @@ export const siteConfig = {
       },
       {
         label: "View LinkedIn",
-        href: "https://linkedin.com/in/meganhaag",
+        href: "https://www.linkedin.com/in/megan-m-eberle",
         icon: "linkedin",
         variant: "outline",
       },
@@ -238,13 +233,9 @@ export const siteConfig = {
 
   footer: {
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "I solve complex problems at the intersection of user needs, business goals, and technical constraints, leading product vision for platforms serving 15,000+ associates and millions of customers.",
     social: [
-      { name: "LinkedIn", href: "https://linkedin.com/in/meganhaag", icon: "linkedin" },
-      { name: "Twitter", href: "https://twitter.com/meganhaag", icon: "twitter" },
-      { name: "GitHub", href: "https://github.com/meganhaag", icon: "github" },
-      { name: "Dribbble", href: "https://dribbble.com/meganhaag", icon: "dribbble" },
-      { name: "Behance", href: "https://behance.net/meganhaag", icon: "behance" },
+      { name: "LinkedIn", href: "https://www.linkedin.com/in/megan-m-eberle", icon: "linkedin" },
     ] as const,
     copyright: `© ${new Date().getFullYear()} Meg Hegg Design. All rights reserved.`,
   },

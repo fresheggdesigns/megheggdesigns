@@ -23,18 +23,15 @@ export function CTA() {
     <section
       ref={sectionRef}
       id="contact"
-      className="w-full px-6 py-24"
+      className="w-full bg-white px-6 py-24"
       aria-label="Contact"
-      style={{
-        background: "linear-gradient(135deg, #1FB5A5 0%, #1a9d8f 100%)",
-      }}
     >
       <div className="mx-auto max-w-3xl text-center">
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-xs font-semibold uppercase tracking-wider text-white/90"
+          className="text-xs font-semibold uppercase tracking-wider text-black"
         >
           {siteConfig.cta.label}
         </motion.p>
@@ -42,7 +39,7 @@ export function CTA() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl"
+          className="mt-2 text-3xl font-bold tracking-tight text-black md:text-4xl"
         >
           {siteConfig.cta.heading}
         </motion.h2>
@@ -50,7 +47,7 @@ export function CTA() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-4 text-base text-white/90 md:text-lg"
+          className="mt-4 text-base text-black md:text-lg"
         >
           {siteConfig.cta.description}
         </motion.p>
@@ -58,7 +55,7 @@ export function CTA() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-3 text-sm text-white/80"
+          className="mt-3 text-sm text-black/80"
         >
           {siteConfig.cta.availability}
         </motion.p>
@@ -86,10 +83,10 @@ export function CTA() {
                   rel={
                     button.href.startsWith("http") ? "noopener noreferrer" : undefined
                   }
-                  className={`group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a9d8f] ${
+                  className={`group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                     isPrimary
                       ? "bg-[var(--hero-accent)] text-white hover:shadow-[var(--hero-accent)]/40"
-                      : "border-2 border-white bg-transparent text-white hover:bg-white/10"
+                      : "border-2 border-foreground bg-transparent text-foreground hover:bg-muted/50"
                   }`}
                 >
                   <IconComponent className="h-4 w-4" aria-hidden />

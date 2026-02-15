@@ -88,7 +88,7 @@ export function Impact() {
       className="w-full px-6 py-24"
       aria-label="Measurable Impact"
       style={{
-        background: "linear-gradient(135deg, #1FB5A5 0%, #1a9d8f 100%)",
+        backgroundColor: "var(--nav-active)",
       }}
     >
       <div className="mx-auto max-w-6xl">

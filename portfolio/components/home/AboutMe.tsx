@@ -2,20 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
-
-const ICON_BG: Record<string, string> = {
-  navy: "#1e3a5f",
-  dark: "#1a1a1a",
-  teal: "#12797e",
-};
-
-function getInitials(company: string): string {
-  if (company.includes("BBVA")) return "BBVA";
-  if (company.includes("Leap")) return "Leap";
-  if (company.includes("DICK'S")) return "DICK'S";
-  return company.slice(0, 2).toUpperCase();
-}
 
 export function AboutMe() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,7 +17,7 @@ export function AboutMe() {
     <section
       ref={sectionRef}
       id="about"
-      className="px-6 py-24 bg-muted/40"
+      className="px-6 py-16 md:py-24 bg-white"
       aria-label="About Me"
     >
       <div className="mx-auto max-w-6xl">
@@ -54,29 +42,34 @@ export function AboutMe() {
                 delay: index * 0.1,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="group relative rounded-lg border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--hero-accent)]/30 hover:shadow-lg hover:shadow-foreground/10"
+              className="flex gap-4 rounded-lg bg-background p-6"
             >
-              <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
-                style={{ backgroundColor: ICON_BG[exp.iconBg] ?? ICON_BG.dark }}
-              >
-                {getInitials(exp.company)}
+              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src={exp.logo}
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="h-full w-full object-cover"
+                />
               </div>
-              <p
-                className="mt-4 text-sm font-medium"
-                style={{ color: "var(--hero-accent)" }}
-              >
-                {exp.years}
-              </p>
-              <p className="mt-1 text-base font-medium text-foreground">
-                {exp.company}
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-foreground">
-                {exp.title}
-              </h3>
-              <p className="mt-3 text-sm text-muted-foreground">
-                {exp.description}
-              </p>
+              <div className="min-w-0 flex-1">
+                <p
+                  className="text-sm font-medium"
+                  style={{ color: "var(--hero-accent)" }}
+                >
+                  {exp.years}
+                </p>
+                <p className="mt-0.5 text-base font-medium text-foreground">
+                  {exp.company}
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-foreground">
+                  {exp.title}
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {exp.description}
+                </p>
+              </div>
             </motion.article>
           ))}
         </div>

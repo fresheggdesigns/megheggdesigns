@@ -55,7 +55,7 @@ export function Navigation() {
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
           "fixed left-0 right-0 top-0 z-50 flex justify-center px-4 py-3 transition-shadow duration-300",
-          "supports-[backdrop-filter]:bg-nav/80 backdrop-blur-md",
+          "bg-transparent",
           scrolled && "shadow-nav"
         )}
         style={{ paddingTop: "0.75rem", paddingBottom: "0.75rem" }}

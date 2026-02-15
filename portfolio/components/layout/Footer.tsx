@@ -40,14 +40,15 @@ const ICON_MAP = {
 export function Footer() {
   return (
     <footer
-      className="rounded-t-2xl bg-[#1A2332] px-6 py-12 text-white md:px-12"
+      className="rounded-t-2xl px-6 py-12 text-white md:px-12"
+      style={{ backgroundColor: "var(--nav)" }}
       aria-label="Site footer"
     >
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
         <div className="flex flex-col items-center gap-4 md:items-start md:max-w-md">
           <Link
             href="#home"
-            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A2332] rounded-full"
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--nav)] rounded-full"
             aria-label={`${siteConfig.name} - Home`}
           >
             <Image
@@ -55,7 +56,7 @@ export function Footer() {
               alt=""
               width={48}
               height={48}
-              className="h-12 w-auto object-contain invert"
+              className="h-12 w-auto object-contain"
             />
           </Link>
           <p className="text-sm text-white/80">
@@ -70,7 +71,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A2332] rounded"
+                  className="text-white/80 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--nav)] rounded"
                   aria-label={link.name}
                 >
                   <IconComponent className="h-5 w-5" />

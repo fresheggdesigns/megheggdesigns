@@ -23,7 +23,7 @@ export function ProductStrategy() {
     <section
       ref={sectionRef}
       id="design-principles"
-      className="px-6 py-24"
+      className="bg-white px-6 py-24"
       aria-label="Product Strategy"
     >
       <div className="mx-auto max-w-6xl text-center">
@@ -31,7 +31,7 @@ export function ProductStrategy() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-xs font-semibold uppercase tracking-wider text-[#33b8bc]"
+          className="text-xs font-semibold uppercase tracking-wider text-black"
         >
           {siteConfig.productStrategy.label}
         </motion.p>
@@ -39,7 +39,7 @@ export function ProductStrategy() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl"
+          className="mt-2 text-3xl font-bold tracking-tight text-black md:text-4xl"
         >
           {siteConfig.productStrategy.heading}
         </motion.h2>
@@ -47,7 +47,7 @@ export function ProductStrategy() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground"
+          className="mx-auto mt-4 max-w-2xl text-base text-black"
         >
           {siteConfig.productStrategy.subtitle}
         </motion.p>
@@ -65,26 +65,22 @@ export function ProductStrategy() {
                   delay: 0.15 + index * 0.1,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="group flex flex-col rounded-lg border border-border bg-muted/40 p-6 text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-foreground/5"
+                className="flex flex-col p-6 text-left"
               >
-                <div className="flex flex-col items-center">
-                  <motion.div
+                <div className="flex flex-col items-start">
+                  <div
                     className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full"
-                    style={{ backgroundColor: "rgba(230, 126, 34, 0.15)" }}
-                    whileHover={{ rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   >
                     <IconComponent
-                      className="h-7 w-7"
-                      style={{ color: "var(--hero-accent)" }}
+                      className="h-7 w-7 text-black"
                       aria-hidden
                     />
-                  </motion.div>
+                  </div>
                 </div>
-                <h3 className="mt-6 text-center text-xl font-bold text-foreground">
+                <h3 className="mt-6 text-xl font-bold text-black">
                   {card.title}
                 </h3>
-                <p className="mt-4 text-center text-sm text-muted-foreground">
+                <p className="mt-4 text-sm text-black">
                   {card.description}
                 </p>
               </motion.article>

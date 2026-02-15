@@ -19,7 +19,7 @@ export function CaseStudies() {
     <section
       ref={sectionRef}
       id="case-studies"
-      className="px-6 py-24 bg-muted/40"
+      className="px-6 py-24 bg-white"
       aria-label="Featured Case Studies"
     >
       <div className="mx-auto max-w-6xl text-center">
@@ -59,19 +59,19 @@ export function CaseStudies() {
                 delay: 0.15 + index * 0.1,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="group flex flex-col overflow-hidden rounded-xl border border-border bg-background shadow-sm transition-shadow hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-xl bg-background"
             >
-              <Link href={project.href} className="flex flex-col flex-1">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl bg-muted/30">
+              <Link href={project.href} className="flex flex-col flex-1 p-6 text-left">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted/30">
                   <Image
                     src={project.image}
                     alt=""
                     fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="mt-6 flex flex-1 flex-col">
                   <p
                     className="text-sm font-semibold"
                     style={{ color: "var(--hero-accent)" }}
