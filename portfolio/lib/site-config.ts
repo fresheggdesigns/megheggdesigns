@@ -186,6 +186,69 @@ export const siteConfig = {
     ] as const,
   },
 
+  productStrategy: {
+    label: "MY APPROACH",
+    heading: "How I Think about Product Strategy",
+    subtitle:
+      "The best product development happens at the intersection of three forces",
+    principles: [
+      {
+        title: "Human Needs",
+        description:
+          "Deep research to understand real problems, not assumed ones. I spend time in context—whether that's retail floors or user interviews—to uncover the friction that matters.",
+        icon: "layers",
+      },
+      {
+        title: "Business Impact",
+        description:
+          "Design decisions should move business metrics. I partner closely with product and leadership to ensure every initiative ladders up to strategic goals.",
+        icon: "smartphone",
+      },
+      {
+        title: "Systems Thinking",
+        description:
+          "Individual features are tactics. I focus on building platforms, patterns, and infrastructure that compound over time and scale across teams.",
+        icon: "layout-dashboard",
+      },
+    ] as const,
+  },
+
+  cta: {
+    label: "REACHING OUT",
+    heading: "Let's Talk Product Strategy",
+    description:
+      "Whether you're hiring, looking to collaborate, or just want to nerd out about design systems and retail innovation, I'd love to connect!",
+    availability:
+      "Currently open to: Staff+ Product Design roles | Design Leadership opportunities",
+    buttons: [
+      {
+        label: "Contact Me",
+        href: "mailto:hello@megheggdesign.com",
+        icon: "mail",
+        variant: "primary",
+      },
+      {
+        label: "View LinkedIn",
+        href: "https://linkedin.com/in/meganhaag",
+        icon: "linkedin",
+        variant: "outline",
+      },
+    ] as const,
+  },
+
+  footer: {
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    social: [
+      { name: "LinkedIn", href: "https://linkedin.com/in/meganhaag", icon: "linkedin" },
+      { name: "Twitter", href: "https://twitter.com/meganhaag", icon: "twitter" },
+      { name: "GitHub", href: "https://github.com/meganhaag", icon: "github" },
+      { name: "Dribbble", href: "https://dribbble.com/meganhaag", icon: "dribbble" },
+      { name: "Behance", href: "https://behance.net/meganhaag", icon: "behance" },
+    ] as const,
+    copyright: `© ${new Date().getFullYear()} Meg Hegg Design. All rights reserved.`,
+  },
+
   nav: [
     { label: "Home", href: "#home" },
     { label: "About Me", href: "#about" },
