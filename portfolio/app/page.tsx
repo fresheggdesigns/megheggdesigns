@@ -1,17 +1,13 @@
 import { Hero } from "@/components/home/Hero";
 import { AboutMe } from "@/components/home/AboutMe";
+import { StrategicFocus } from "@/components/home/StrategicFocus";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <AboutMe />
-      <section id="strategic-focus" className="min-h-[50vh] px-6 py-24" aria-label="Strategic Focus">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-2xl font-semibold text-foreground">Strategic Focus</h2>
-          <p className="mt-4 text-muted-foreground">Content coming soon.</p>
-        </div>
-      </section>
+      <StrategicFocus />
       <section id="case-studies" className="min-h-[50vh] px-6 py-24 bg-muted/40" aria-label="Case Studies">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl font-semibold text-foreground">Case Studies</h2>

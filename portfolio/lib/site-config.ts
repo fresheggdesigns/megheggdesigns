@@ -56,6 +56,49 @@ export const siteConfig = {
     ] as const,
   },
 
+  strategicFocus: {
+    label: "WHAT I LEAD",
+    heading: "Current Strategic Focus",
+    cards: [
+      {
+        title: "Golf Performance Optimization",
+        category: "SPORT INNOVATION",
+        description:
+          "Spearheading a first of its kind, Golf Performance program using body motion capture and ground force data to create the most robust data pipeline in sport.",
+        bullets: [
+          "Leading Vendor Partnerships",
+          "2 web applications",
+          "Initial Pilot testing in 6 stores",
+        ],
+        icon: "layers",
+      },
+      {
+        title: "Data & Insights Platforms",
+        category: "PLATFORM STRATEGY",
+        description:
+          "Leading the modernization of our patented footwear ecosystem & sales-and-service software, balancing technical debt reduction with new capabilities to drive conversion.",
+        bullets: [
+          "850+ stores | 15K associates",
+          "2M+ annual transactions",
+          "Record-breaking sales performance",
+        ],
+        icon: "bar-chart",
+      },
+      {
+        title: "Design Systems & Infrastructure",
+        category: "CROSS-TEAM INFRASTRUCTURE",
+        description:
+          "Scaling design consistency and velocity across 9 autonomous product teams through governance, education, and systematic thinking.",
+        bullets: [
+          "25% adoption increase (FY'24)",
+          "40% reduction in component redundancy",
+          "2-week average delivery time reduction",
+        ],
+        icon: "layout-dashboard",
+      },
+    ] as const,
+  },
+
   nav: [
     { label: "Home", href: "#home" },
     { label: "About Me", href: "#about" },
