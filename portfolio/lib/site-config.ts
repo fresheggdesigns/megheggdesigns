@@ -3,9 +3,27 @@
  */
 
 export const siteConfig = {
-  name: "Fresh Egg Designs",
+  name: "Meg Hegg Design",
   shortName: "Meg Hegg",
   tagline: "Product Design",
+
+  hero: {
+    greeting: "Hey there, I'm",
+    name: "Megan Hegg",
+    title: "Senior Product Designer",
+    subtitle: "Strategy-Driven | Systems Thinker | Innovation Leader",
+    points: [
+      "User-centered problem solving",
+      "Business goals aligned with design",
+      "Technical feasibility awareness",
+      "Scaling for 15,000+ associates and millions of customers",
+    ],
+    cta: {
+      label: "@MEGANHAAG",
+      href: "https://linkedin.com/in/meganhaag",
+    },
+    profileAlt: "Megan Hegg - Senior Product Designer",
+  },
 
   nav: [
     { label: "Home", href: "#home" },

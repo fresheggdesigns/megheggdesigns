@@ -1,16 +1,9 @@
+import { Hero } from "@/components/home/Hero";
+
 export default function Home() {
   return (
     <>
-      <section id="home" className="min-h-[60vh] px-6 py-24" aria-label="Home">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-            Welcome to Fresh Egg Designs
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Product design portfolio. Scroll or use the nav to explore sections.
-          </p>
-        </div>
-      </section>
+      <Hero />
       <section id="about" className="min-h-[50vh] px-6 py-24 bg-muted/40" aria-label="About Me">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl font-semibold text-foreground">About Me</h2>

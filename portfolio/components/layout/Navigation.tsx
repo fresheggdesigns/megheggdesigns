@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -73,17 +74,13 @@ export function Navigation() {
             className="flex shrink-0 items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-nav-active focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full"
             aria-label={`${siteConfig.name} - Home`}
           >
-            <div
-              className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded-full bg-white text-nav text-center"
-              aria-hidden
-            >
-              <span className="text-[9px] font-semibold leading-tight uppercase">
-                {siteConfig.shortName}
-              </span>
-              <span className="text-[6px] font-medium leading-tight uppercase opacity-90">
-                {siteConfig.tagline}
-              </span>
-            </div>
+            <Image
+              src="/megHegg-Logo.png"
+              alt=""
+              width={40}
+              height={40}
+              className="h-10 w-10 shrink-0 rounded-full object-contain"
+            />
             <span className="hidden font-medium text-white/95 sm:inline">
               {siteConfig.name}
             </span>

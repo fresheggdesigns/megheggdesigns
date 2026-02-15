@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fresh Egg Designs | Product Design Portfolio",
+  title: "Meg Hegg Design | Product Design Portfolio",
   description: "Meg Hegg – Product design portfolio",
 };
 
