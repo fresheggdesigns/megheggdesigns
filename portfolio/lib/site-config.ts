@@ -25,6 +25,37 @@ export const siteConfig = {
     profileAlt: "Megan Hegg - Senior Product Designer",
   },
 
+  about: {
+    label: "BACKGROUND",
+    heading: "About Me",
+    bio: "8+ years designing products across retail, events, and fintech. When I'm not working... I'm still working (on side projects) including 3D modeling in Blender, painting punny pet portraits and custom sneakers for my Etsy Shop: Fresh Egg Designs.",
+    experience: [
+      {
+        company: "BBVA Compass",
+        years: "2019 - 2020",
+        title: "UX Designer",
+        description: "Designed a digital banking native Mobile App and internal tools",
+        iconBg: "navy",
+      },
+      {
+        company: "Leap Technology",
+        years: "2021 - 2023",
+        title: "UX Designer",
+        description:
+          "Drove UX transformation for event management platforms serving NFL, Disney, and enterprise clients",
+        iconBg: "dark",
+      },
+      {
+        company: "DICK'S Sporting Goods",
+        years: "2023 - Present",
+        title: "Senior Product Designer",
+        description:
+          "Leading product strategy for footwear platforms, design systems, and innovation pipeline",
+        iconBg: "teal",
+      },
+    ] as const,
+  },
+
   nav: [
     { label: "Home", href: "#home" },
     { label: "About Me", href: "#about" },
