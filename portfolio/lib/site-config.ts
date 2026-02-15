@@ -181,6 +181,37 @@ export const siteConfig = {
     ] as const,
   },
 
+  caseStudyDetails: {
+    "clientelling-app": {
+      category: "Retail Innovation",
+      title: "Clientelling App",
+      subtitle:
+        "Scaling Sales & Service Across 800+ Stores Through Strategic Product Vision",
+      meta: {
+        role: "Lead Product Designer, Strategic Vision & Research",
+        timeline: "August 2024 - January 2025",
+        team: "Product Management, Engineering, Store Operations",
+        platform:
+          "React Native Application for 850 Dick's Sporting Goods stores.",
+      },
+      metrics: [
+        { value: "800+", description: "stores deployed nationwide" },
+        { value: "16,000+", description: "DAU store associates" },
+        { value: "3M+", description: "product scans monthly" },
+        { value: "Patent Pending", description: "AI capability: Sport Search" },
+        { value: "-1s", description: "Scan Performance (reduced from 2.5 seconds)" },
+        {
+          value: "Foundational",
+          description: "for DICK's in-store digital strategy",
+        },
+      ],
+      strategicContext:
+        "DICK'S Sporting Goods is committed to creating a best-in-class in-store experience that blends digital and physical retail. The Clientelling App represents a strategic investment in equipping store associates with the tools they need to serve customers more effectively, drive sales, and differentiate the in-store experience.",
+      businessProblem:
+        "Associates faced inconsistent product information across channels, missed opportunities for personalized recommendations, and lacked streamlined tools to look up inventory and complete transactions. This led to friction in the customer journey and lost conversion opportunities.",
+    },
+  } as const,
+
   productStrategy: {
     label: "MY APPROACH",
     heading: "How I Think about Product Strategy",
