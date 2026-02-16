@@ -173,8 +173,8 @@ export const siteConfig = {
         title: "Live Event Technology",
         category: "Enterprise Platform Transformation",
         description:
-          "Built governance model and semantic architecture enabling 9 teams to move faster while maintaining experience quality.",
-        impact: "25% adoption increase | 40% component reduction | 2-week faster delivery",
+          "Drove UX strategy through field research at NFL, Disney, and Live Nation—redesigning complex automation tools into guided flows that cut training time and support burden.",
+        impact: "Training time 4-6 → 2-3 weeks | Reduced support tickets | Increased adoption | Positive client feedback",
         image: "/CaseStudyThumbnails/LiveEventThumbnail.png",
         href: "/case-studies/live-event-technology",
       },
@@ -1218,6 +1218,7 @@ export const siteConfig = {
       "Whether you're hiring, looking to collaborate, or just want to nerd out about design systems and retail innovation, I'd love to connect!",
     availability:
       "Currently open to: Staff+ Product Design roles | Design Leadership opportunities",
+    formspreeEndpoint: "https://formspree.io/f/xqedqvvo",
     buttons: [
       {
         label: "Contact Me",

@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { ContactModal } from "@/components/contact/ContactModal";
 
 const ICON_MAP = {
   mail: Mail,
@@ -13,6 +14,7 @@ const ICON_MAP = {
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.2,
@@ -64,6 +66,12 @@ export function CTA() {
           {siteConfig.cta.buttons.map((button, index) => {
             const IconComponent = ICON_MAP[button.icon];
             const isPrimary = button.variant === "primary";
+            const isContactMe = button.label === "Contact Me";
+            const buttonClass = `group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+              isPrimary
+                ? "bg-[var(--hero-accent)] text-white hover:shadow-[var(--hero-accent)]/40"
+                : "border-2 border-foreground bg-transparent text-foreground hover:bg-muted/50"
+            }`;
             return (
               <motion.div
                 key={button.label}
@@ -77,26 +85,35 @@ export function CTA() {
                   damping: 20,
                 }}
               >
-                <Link
-                  href={button.href}
-                  target={button.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    button.href.startsWith("http") ? "noopener noreferrer" : undefined
-                  }
-                  className={`group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
-                    isPrimary
-                      ? "bg-[var(--hero-accent)] text-white hover:shadow-[var(--hero-accent)]/40"
-                      : "border-2 border-foreground bg-transparent text-foreground hover:bg-muted/50"
-                  }`}
-                >
-                  <IconComponent className="h-4 w-4" aria-hidden />
-                  {button.label}
-                </Link>
+                {isContactMe ? (
+                  <button
+                    type="button"
+                    onClick={() => setContactModalOpen(true)}
+                    className={buttonClass}
+                  >
+                    <IconComponent className="h-4 w-4" aria-hidden />
+                    {button.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={button.href}
+                    target={button.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      button.href.startsWith("http") ? "noopener noreferrer" : undefined
+                    }
+                    className={buttonClass}
+                  >
+                    <IconComponent className="h-4 w-4" aria-hidden />
+                    {button.label}
+                  </Link>
+                )}
               </motion.div>
             );
           })}
         </div>
       </div>
+
+      <ContactModal open={contactModalOpen} onClose={() => setContactModalOpen(false)} />
     </section>
   );
 }
