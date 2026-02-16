@@ -2,10 +2,12 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  BarChart2,
   FileText,
   Layers,
   LayoutDashboard,
   LayoutGrid,
+  Lightbulb,
   Smartphone,
   type LucideIcon,
 } from "lucide-react";
@@ -17,6 +19,7 @@ const STRATEGIC_CHALLENGE_ICONS: Record<string, LucideIcon> = {
   "layout-dashboard": LayoutDashboard,
   "layout-grid": LayoutGrid,
   "file-text": FileText,
+  "bar-chart": BarChart2,
 };
 
 type CaseStudySlug = keyof typeof siteConfig.caseStudyDetails;
@@ -54,7 +57,7 @@ export default async function CaseStudyPage({
   return (
     <article className="bg-white">
       {/* Hero */}
-      <section className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
+      <section className="px-6 pt-6 pb-4 md:pt-10 md:pb-6">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#33b8bc]">
@@ -77,10 +80,18 @@ export default async function CaseStudyPage({
                 <dt className="text-sm font-semibold text-foreground">TEAM</dt>
                 <dd className="text-muted-foreground">{details.meta.team}</dd>
               </div>
-              <div>
-                <dt className="text-sm font-semibold text-foreground">PLATFORM</dt>
-                <dd className="text-muted-foreground">{details.meta.platform}</dd>
-              </div>
+              {"clients" in details.meta && details.meta.clients && (
+                <div>
+                  <dt className="text-sm font-semibold text-foreground">CLIENTS</dt>
+                  <dd className="text-muted-foreground">{details.meta.clients}</dd>
+                </div>
+              )}
+              {"platform" in details.meta && details.meta.platform && (
+                <div>
+                  <dt className="text-sm font-semibold text-foreground">PLATFORM</dt>
+                  <dd className="text-muted-foreground">{details.meta.platform}</dd>
+                </div>
+              )}
             </dl>
           </div>
           <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
@@ -166,9 +177,11 @@ export default async function CaseStudyPage({
             </div>
             <div>
               <h3 className="text-xl font-bold tracking-tight text-foreground">
-                {(details as { theStakes?: unknown }).theStakes
-                  ? "The Stakes"
-                  : "Business Problem"}
+                {(details as { businessChallengeRightHeading?: string })
+                  .businessChallengeRightHeading ??
+                  ((details as { theStakes?: unknown }).theStakes
+                    ? "The Stakes"
+                    : "Business Problem")}
               </h3>
               <div className="mt-4 space-y-4">
                 {(
@@ -215,8 +228,9 @@ export default async function CaseStudyPage({
               strategicApproach?: {
                 label: string;
                 heading: string;
+                introParagraph?: string;
                 methods: { title: string; icon: string; details: string[] }[];
-                keyInsight: { icon: string; text: string };
+                keyInsight?: { icon: string; text: string };
               };
             }).strategicApproach;
             if (!approach) return null;
@@ -235,8 +249,15 @@ export default async function CaseStudyPage({
                   <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                     {approach.heading}
                   </h2>
+                  {approach.introParagraph && (
+                    <p className="mx-auto mt-6 max-w-2xl text-muted-foreground leading-relaxed">
+                      {approach.introParagraph}
+                    </p>
+                  )}
                 </div>
-                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:gap-12">
+                <div
+                  className={`mt-12 grid gap-8 sm:grid-cols-2 lg:gap-12 ${approach.methods.length >= 5 ? "lg:grid-cols-3 xl:grid-cols-5" : "lg:grid-cols-2"}`}
+                >
                   {approach.methods.map((method) => {
                     const IconComponent =
                       STRATEGIC_CHALLENGE_ICONS[method.icon] ?? Layers;
@@ -264,33 +285,195 @@ export default async function CaseStudyPage({
                     );
                   })}
                 </div>
-                <div className="mt-8 rounded-xl bg-muted/50 p-6">
-                  {(() => {
-                    const KeyInsightIcon =
-                      STRATEGIC_CHALLENGE_ICONS[approach.keyInsight.icon] ??
-                      Layers;
-                    return (
-                      <>
-                        <div
-                          className="flex h-10 w-10 items-center justify-center"
-                          aria-hidden
-                        >
-                          <KeyInsightIcon
-                            className="h-8 w-8 shrink-0 stroke-[1.5]"
-                            style={{ color: "var(--hero-accent)" }}
-                            strokeWidth={1.5}
-                          />
-                        </div>
-                        <h4 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                          Key Insight
-                        </h4>
-                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                          {approach.keyInsight.text}
-                        </p>
-                      </>
-                    );
-                  })()}
+                {"keyInsight" in approach && approach.keyInsight && (
+                  <div className="mt-8 rounded-xl bg-muted/50 p-6">
+                    {(() => {
+                      const KeyInsightIcon =
+                        STRATEGIC_CHALLENGE_ICONS[approach.keyInsight.icon] ??
+                        Layers;
+                      return (
+                        <>
+                          <div
+                            className="flex h-10 w-10 items-center justify-center"
+                            aria-hidden
+                          >
+                            <KeyInsightIcon
+                              className="h-8 w-8 shrink-0 stroke-[1.5]"
+                              style={{ color: "var(--hero-accent)" }}
+                              strokeWidth={1.5}
+                            />
+                          </div>
+                          <h4 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                            Key Insight
+                          </h4>
+                          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                            {approach.keyInsight.text}
+                          </p>
+                        </>
+                      );
+                    })()}
+                  </div>
+                )}
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const fieldResearch = (details as typeof details & {
+              fieldResearchAtScale?: {
+                label: string;
+                heading: string;
+                images: string[];
+                highProfileEventStudies?: {
+                  title: string;
+                  description: string;
+                  items: string[];
+                };
+                whatIWasInvestigating?: {
+                  title: string;
+                  subsections: { heading: string; bullets: string[] }[];
+                };
+                sitemapNotes?: {
+                  title: string;
+                  notes: string[];
+                };
+                keyInsights?: {
+                  title: string;
+                  insights: {
+                    number: number;
+                    title: string;
+                    body: string;
+                    impact?: string;
+                  }[];
+                };
+              };
+            }).fieldResearchAtScale;
+            if (!fieldResearch) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Field Research at Scale"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {fieldResearch.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {fieldResearch.heading}
+                  </h2>
                 </div>
+
+                <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
+                  <div className="space-y-6 max-w-md">
+                    {fieldResearch.images?.map((src, i) => (
+                      <div
+                        key={i}
+                        className="relative aspect-[4/3] w-full overflow-hidden rounded-xl"
+                      >
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="space-y-10">
+                    {fieldResearch.highProfileEventStudies && (
+                      <div>
+                        <h3
+                          className="text-lg font-bold tracking-tight text-foreground"
+                          style={{ color: "var(--hero-accent)" }}
+                        >
+                          {fieldResearch.highProfileEventStudies.title}
+                        </h3>
+                        <p className="mt-3 font-semibold text-foreground leading-relaxed">
+                          {fieldResearch.highProfileEventStudies.description}
+                        </p>
+                        <ul className="mt-4 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                          {fieldResearch.highProfileEventStudies.items.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {fieldResearch.whatIWasInvestigating && (
+                      <div>
+                        <h3 className="text-lg font-bold tracking-tight text-foreground">
+                          {fieldResearch.whatIWasInvestigating.title}
+                        </h3>
+                        <div className="mt-6 space-y-5">
+                          {fieldResearch.whatIWasInvestigating.subsections.map((sub, i) => (
+                            <div key={i}>
+                              <p className="text-sm font-semibold text-foreground">
+                                {sub.heading}
+                              </p>
+                              <ul className="mt-2 list-disc space-y-0.5 pl-4 text-sm text-muted-foreground leading-relaxed">
+                                {sub.bullets.map((b, j) => (
+                                  <li key={j}>{b}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {fieldResearch.sitemapNotes && (
+                      <div>
+                        <h3 className="text-lg font-bold tracking-tight text-foreground">
+                          {fieldResearch.sitemapNotes.title}
+                        </h3>
+                        <ul className="mt-4 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                          {fieldResearch.sitemapNotes.notes.map((n, i) => (
+                            <li key={i}>{n}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {fieldResearch.keyInsights && (
+                  <div className="mt-12 rounded-xl border border-border bg-[#f8f8f8] p-6 shadow-sm md:p-8">
+                    <div className="flex items-center gap-3">
+                      <Lightbulb
+                        className="h-6 w-6 shrink-0"
+                        style={{ color: "var(--hero-accent)" }}
+                        strokeWidth={1.5}
+                        aria-hidden
+                      />
+                      <h3 className="text-lg font-bold tracking-tight text-foreground">
+                        {fieldResearch.keyInsights.title}
+                      </h3>
+                    </div>
+                    <div className="mt-6 space-y-6">
+                      {fieldResearch.keyInsights.insights.map((insight) => (
+                        <div key={insight.number}>
+                          <p className="font-bold text-foreground">
+                            {insight.number}. {insight.title}
+                          </p>
+                          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                            {insight.body}
+                          </p>
+                          {insight.impact && (
+                            <p className="mt-2 text-sm">
+                              <span className="font-semibold text-foreground">Impact: </span>
+                              <span className="text-muted-foreground">{insight.impact}</span>
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </section>
             );
           })()}

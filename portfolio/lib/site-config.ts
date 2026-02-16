@@ -169,14 +169,14 @@ export const siteConfig = {
         href: "/case-studies/footwear-request-app",
       },
       {
-        slug: "design-system-transformation",
-        title: "Design System Transformation",
-        category: "Scaling Consistency Across Teams",
+        slug: "live-event-technology",
+        title: "Live Event Technology",
+        category: "Enterprise Platform Transformation",
         description:
           "Built governance model and semantic architecture enabling 9 teams to move faster while maintaining experience quality.",
         impact: "25% adoption increase | 40% component reduction | 2-week faster delivery",
-        image: "/CaseStudyThumbnails/DesignSystemThumbnail.png",
-        href: "/case-studies/design-system-transformation",
+        image: "/CaseStudyThumbnails/LiveEventThumbnail.png",
+        href: "/case-studies/live-event-technology",
       },
     ] as const,
   },
@@ -814,6 +814,190 @@ export const siteConfig = {
               "ShoeRunner proved that design leadership at scale requires equal parts craft, strategy, and organizational influence. The most beautiful redesign means nothing if you can't build the case for it, align stakeholders, and prove it moves the business.",
           },
         ],
+      },
+    },
+    "live-event-technology": {
+      heroImage: "/LiveEventTech/LeapTechHeroImage.png",
+      category: "Enterprise Platform Transformation",
+      title: "Live Event Technology",
+      subtitle:
+        "Driving UX Strategy Through Field Research & Complex Feature Redesign",
+      meta: {
+        role: "User Experience Designer, Research & Strategy Lead",
+        timeline: "2021 - December 2022",
+        team: "Product Management, Engineering, Event Operations, Client Success",
+        clients:
+          "NFL, Disney, Live Nation, major sports & entertainment venues",
+      } as { role: string; timeline: string; team: string; platform?: string; clients?: string },
+      metrics: [
+        {
+          value: "High-profile event research",
+          description: "at NFL, Disney, and Live Nation venues",
+        },
+        {
+          value: "Presented to Senior Leadership",
+          description: "multiple times on strategic findings",
+        },
+        {
+          value: "82% mobile usage",
+          description: "discovery driving mobile-first strategy shift",
+        },
+        {
+          value: "Cognitive overload reduction",
+          description: "through automation tool redesign",
+        },
+        {
+          value: "Training time improvement",
+          description: "for internal power users",
+        },
+        {
+          value: "Design system foundation",
+          description: "(Admin v3) supporting product scalability",
+        },
+      ],
+      strategicContext: [
+        "Leap (then Patron) Technology provided event management software for the world's largest venues and events—NFL games, Disney experiences, major concerts. The platform handled ticketing, registration, check-in, loyalty programs, and on-site activations for millions of attendees annually.",
+        "The complexity:",
+        {
+          bullets: [
+            "Diverse clients with wildly different needs (NFL vs. Disney vs. music festivals)",
+            "High-stakes environments where downtime = revenue loss and reputation damage",
+            "Power user tools so complex they required weeks of training",
+            "Mobile-first reality (82% of end users on mobile) vs. desktop-first platform",
+            "Rapid event cycles with no room for iteration during live events",
+          ],
+        },
+      ],
+      businessChallengeRightHeading: "My Challenge",
+      businessProblem: [
+        "The company was growing through acquisition and facing pressure to modernize the platform to compete with newer event tech companies, reduce training burden for clients (onboarding took 4-6 weeks), improve end-user experience at events (attendee-facing touchpoints), & scale product capabilities without fragmenting the experience.",
+        "As one of the few designers at the company, I needed to:",
+        {
+          bullets: [
+            "Establish research as strategic input (not just validation)",
+            "Build the case for UX investment in an engineering-led culture",
+            "Redesign complex power user tools without alienating existing users",
+            "Drive mobile-first thinking across the organization",
+            "Balance immediate fixes with long-term platform strategy",
+          ],
+        },
+      ],
+      strategicApproach: {
+        label: "STRATEGIC APPROACH",
+        heading: "Research as Organizational Change",
+        introParagraph:
+          "When I joined, 'user research' meant occasional client calls. There was no systematic approach to understanding real user needs or field validation. What I established:",
+        methods: [
+          {
+            title: "On-site field research program",
+            icon: "layout-grid",
+            details: ["at high-profile events"],
+          },
+          {
+            title: "Ethnographic observation",
+            icon: "smartphone",
+            details: ["of event staff during live operations"],
+          },
+          {
+            title: "End-user testing",
+            icon: "layout-dashboard",
+            details: ["of attendee-facing features in real environments"],
+          },
+          {
+            title: "Stakeholder interviews",
+            icon: "file-text",
+            details: ["with clients (event managers, operations directors)"],
+          },
+          {
+            title: "Analytics integration",
+            icon: "bar-chart",
+            details: ["(introduced Pendo) for data-driven discovery"],
+          },
+        ],
+      },
+      fieldResearchAtScale: {
+        label: "HOW I WORK",
+        heading: "Field Research at Scale",
+        images: [
+          "/LiveEventTech/ResearchImage1.png",
+          "/LiveEventTech/ResearchImage2.png",
+          "/LiveEventTech/ResearchImage3.png",
+        ],
+        highProfileEventStudies: {
+          title: "High-Profile Event Studies",
+          description:
+            "Over 2 years, I traveled to 3 major events to conduct immersive research:",
+          items: [
+            "NFL games: Observing check-in flows, credential validation, real-time operations",
+            "Disney events: Understanding multi-day event complexity and attendee engagement",
+            "Live Nation venues: Studying high-volume, time-sensitive operations",
+          ],
+        },
+        whatIWasInvestigating: {
+          title: "What I Was Investigating",
+          subsections: [
+            {
+              heading: "End-to-end user experiences:",
+              bullets: [
+                "How do event staff use our tools under pressure?",
+                "Where do workflows break down during live events?",
+                "What workarounds have teams created?",
+                "How do attendees experience our front-end interfaces?",
+              ],
+            },
+            {
+              heading: "Feature-specific validation:",
+              bullets: [
+                "Testing new releases in real conditions (not lab usability)",
+                "Identifying performance issues before they became critical",
+                "Understanding context-specific usage patterns",
+              ],
+            },
+            {
+              heading: "Research Artifacts & Communication:",
+              bullets: [
+                "After each event, I created comprehensive readouts:",
+                "Consolidated findings with video evidence and quotes",
+                "Journey maps showing end-to-end event staff workflows",
+                "Pain point prioritization tied to business impact",
+                "Opportunity areas for product improvements",
+              ],
+            },
+          ],
+        },
+        sitemapNotes: {
+          title: "Sitemap Traffic Notes",
+          notes: [
+            "Initial crowd rushed in for Draft Theater / standing stage",
+            "Pain-point: miscommunication as attendees were grabbing standing stage space even though the event wasn't open yet",
+            "Once the problem was identified, attendees dispersed back into the event areas, approaching the closest kiosks",
+            "Subway had their staff standing in the crowd of attendees trying to direct towards their station as an Autograph event was in the SC event scheduled past 10am in the schedule. Most people did not realize it was happening. It highlights both the lack of ability for people to know of an event activity but are unable to connect the dots.",
+          ],
+        },
+        keyInsights: {
+          title: "Key Insights That Drove Strategy",
+          insights: [
+            {
+              number: 1,
+              title: "Mobile-first reality",
+              body: "82% of end users on mobile devices. This single finding shifted organizational strategy. We were building desktop-first experiences when users were overwhelmingly on phones and tablets.",
+              impact:
+                "Drove investment in mobile-responsive redesigns and tablet-optimized interfaces for on-site staff.",
+            },
+            {
+              number: 2,
+              title: "Power user tools create training bottlenecks",
+              body: "The Automations feature was so complex it required dedicated training sessions. Clients couldn't self-serve, creating dependency on our support team.",
+              impact: "Justified the Automations redesign project (detailed below).",
+            },
+            {
+              number: 3,
+              title: "Real-time performance is non-negotiable",
+              body: "During live events, even 2-3 second delays cascade into major operational problems. Performance wasn't a 'nice to have'—it was existential.",
+              impact: "Established performance budgets as design requirements.",
+            },
+          ],
+        },
       },
     },
   } as const,
