@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  FileText,
   Layers,
   LayoutDashboard,
   LayoutGrid,
@@ -15,6 +16,7 @@ const STRATEGIC_CHALLENGE_ICONS: Record<string, LucideIcon> = {
   smartphone: Smartphone,
   "layout-dashboard": LayoutDashboard,
   "layout-grid": LayoutGrid,
+  "file-text": FileText,
 };
 
 type CaseStudySlug = keyof typeof siteConfig.caseStudyDetails;
@@ -96,7 +98,7 @@ export default async function CaseStudyPage({
 
       {/* Impact at a Glance */}
       <section
-        className="bg-white px-6 pt-8 pb-16"
+        className="bg-white px-6 pt-8 pb-12"
         aria-label="Impact at a Glance"
       >
         <div className="mx-auto max-w-6xl">
@@ -124,7 +126,7 @@ export default async function CaseStudyPage({
       </section>
 
       {/* Business Challenge */}
-      <section className="px-6 py-16 md:py-24">
+      <section className="px-6 py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2
             className="text-xs font-semibold uppercase tracking-wider"
@@ -141,36 +143,164 @@ export default async function CaseStudyPage({
                 {(Array.isArray(details.strategicContext)
                   ? details.strategicContext
                   : [details.strategicContext]
-                ).map((para, i) => (
-                  <p key={i} className="text-muted-foreground leading-relaxed">
-                    {para}
-                  </p>
-                ))}
+                ).map((item, i) =>
+                  typeof item === "string" ? (
+                    <p
+                      key={i}
+                      className="text-muted-foreground leading-relaxed"
+                    >
+                      {item}
+                    </p>
+                  ) : "bullets" in item ? (
+                    <ul
+                      key={i}
+                      className="list-disc space-y-1 pl-4 text-muted-foreground leading-relaxed"
+                    >
+                      {item.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  ) : null
+                )}
               </div>
             </div>
             <div>
               <h3 className="text-xl font-bold tracking-tight text-foreground">
-                Business Problem
+                {(details as { theStakes?: unknown }).theStakes
+                  ? "The Stakes"
+                  : "Business Problem"}
               </h3>
               <div className="mt-4 space-y-4">
-                {(Array.isArray(details.businessProblem)
-                  ? details.businessProblem
-                  : [details.businessProblem]
-                ).map((para, i) => (
-                  <p key={i} className="text-muted-foreground leading-relaxed">
-                    {para}
-                  </p>
-                ))}
+                {(
+                  (details as { theStakes?: (string | { bullets: string[] })[] })
+                    .theStakes ?? (Array.isArray(details.businessProblem)
+                    ? details.businessProblem
+                    : [details.businessProblem])
+                ).map((item: string | { bullets: string[] }, i: number) =>
+                  typeof item === "string" ? (
+                    <p
+                      key={i}
+                      className="text-muted-foreground leading-relaxed"
+                    >
+                      {item}
+                    </p>
+                  ) : "bullets" in item ? (
+                    <ul
+                      key={i}
+                      className="list-disc space-y-1 pl-4 text-muted-foreground leading-relaxed"
+                    >
+                      {item.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  ) : null
+                )}
               </div>
             </div>
           </div>
+
+          {"myChallenge" in details && details.myChallenge && (
+            <div className="mt-12">
+              <h3 className="text-xl font-bold tracking-tight text-foreground">
+                My Challenge
+              </h3>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                {String(details.myChallenge)}
+              </p>
+            </div>
+          )}
+
+          {(() => {
+            const approach = (details as typeof details & {
+              strategicApproach?: {
+                label: string;
+                heading: string;
+                methods: { title: string; icon: string; details: string[] }[];
+                keyInsight: { icon: string; text: string };
+              };
+            }).strategicApproach;
+            if (!approach) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Strategic Approach"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {approach.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {approach.heading}
+                  </h2>
+                </div>
+                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:gap-12">
+                  {approach.methods.map((method) => {
+                    const IconComponent =
+                      STRATEGIC_CHALLENGE_ICONS[method.icon] ?? Layers;
+                    return (
+                      <div key={method.title}>
+                        <div
+                          className="flex h-10 w-10 items-center justify-center"
+                          aria-hidden
+                        >
+                          <IconComponent
+                            className="h-8 w-8 shrink-0 stroke-[1.5]"
+                            style={{ color: "var(--hero-accent)" }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                          {method.title}
+                        </h3>
+                        <ul className="mt-3 space-y-2 text-sm text-muted-foreground leading-relaxed">
+                          {method.details.map((detail, i) => (
+                            <li key={i}>{detail}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-8 rounded-xl bg-muted/50 p-6">
+                  {(() => {
+                    const KeyInsightIcon =
+                      STRATEGIC_CHALLENGE_ICONS[approach.keyInsight.icon] ??
+                      Layers;
+                    return (
+                      <>
+                        <div
+                          className="flex h-10 w-10 items-center justify-center"
+                          aria-hidden
+                        >
+                          <KeyInsightIcon
+                            className="h-8 w-8 shrink-0 stroke-[1.5]"
+                            style={{ color: "var(--hero-accent)" }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <h4 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                          Key Insight
+                        </h4>
+                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                          {approach.keyInsight.text}
+                        </p>
+                      </>
+                    );
+                  })()}
+                </div>
+              </section>
+            );
+          })()}
 
           {(() => {
             const challenges = (details as typeof details & { strategicChallenges?: { label: string; heading: string; challenges: { title: string; description: string; icon: string }[] } }).strategicChallenges;
             if (!challenges) return null;
             return (
               <section
-                className="mt-20 pt-16 md:pt-20"
+                className="mt-12 pt-12 md:pt-14"
                 aria-label="My Strategic Challenge"
               >
                 <div className="text-center">
@@ -218,6 +348,233 @@ export default async function CaseStudyPage({
           })()}
 
           {(() => {
+            const sdt = (details as typeof details & {
+              strategicDecisionsTradeoffs?: {
+                label: string;
+                heading: string;
+                decisions: {
+                  number: number;
+                  title: string;
+                  image: string;
+                  imagePosition: "left" | "right";
+                  blocks: { heading: string; content?: string; items?: string[] }[];
+                }[];
+              };
+            }).strategicDecisionsTradeoffs;
+            if (!sdt) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Strategic Decisions & Tradeoffs"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {sdt.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {sdt.heading}
+                  </h2>
+                </div>
+                <div className="mt-12 space-y-14">
+                  {sdt.decisions.map((d) => (
+                    <div
+                      key={d.number}
+                      className="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center"
+                    >
+                      <div
+                        className={`relative aspect-[3/4] overflow-hidden rounded-xl ${d.imagePosition === "right" ? "lg:order-2" : ""}`}
+                      >
+                        <Image
+                          src={d.image}
+                          alt=""
+                          fill
+                          className="object-contain object-center"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                      <div
+                        className={d.imagePosition === "right" ? "lg:order-1" : ""}
+                      >
+                        <p
+                          className="text-xs font-semibold uppercase tracking-wider"
+                          style={{ color: "var(--hero-accent)" }}
+                        >
+                          Decision {d.number}
+                        </p>
+                        <h3 className="mt-2 text-xl font-bold tracking-tight text-foreground md:text-2xl">
+                          {d.title}
+                        </h3>
+                        <div className="mt-6 space-y-5 text-muted-foreground">
+                          {d.blocks.map((block, i) => (
+                            <div key={i}>
+                              <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                                {block.heading}
+                              </p>
+                              {block.content ? (
+                                <p className="mt-1 text-sm leading-relaxed">
+                                  {block.content}
+                                </p>
+                              ) : block.items ? (
+                                <ul className="mt-1 list-disc space-y-1 pl-4 text-sm leading-relaxed">
+                                  {block.items.map((item, j) => (
+                                    <li key={j}>{item}</li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const alignment = (details as typeof details & {
+              buildingAlignment?: {
+                label: string;
+                heading: string;
+                columns: { title: string; items: string[] }[];
+              };
+            }).buildingAlignment;
+            if (!alignment) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Building Alignment"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {alignment.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {alignment.heading}
+                  </h2>
+                </div>
+                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+                  {alignment.columns.map((col) => (
+                    <div key={col.title}>
+                      <h3 className="text-base font-bold tracking-tight text-foreground">
+                        {col.title}
+                      </h3>
+                      <ul className="mt-4 list-disc space-y-2 pl-4 text-sm text-muted-foreground leading-relaxed">
+                        {col.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const scale = (details as typeof details & {
+              designAtScale?: {
+                label: string;
+                heading: string;
+                cards: { title: string; icon: string; items: string[] }[];
+                roadmap: {
+                  phase: number;
+                  title: string;
+                  status: string;
+                  items: string[];
+                }[];
+              };
+            }).designAtScale;
+            if (!scale) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Driving Design at Scale"
+              >
+                <div className="text-center">
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--nav-active)" }}
+                  >
+                    {scale.label}
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                    {scale.heading}
+                  </h2>
+                </div>
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {scale.cards.map((card) => {
+                    const IconComponent =
+                      STRATEGIC_CHALLENGE_ICONS[card.icon] ?? Layers;
+                    return (
+                      <div
+                        key={card.title}
+                        className="rounded-xl bg-muted/50 p-6"
+                      >
+                        <div
+                          className="flex h-10 w-10 items-center justify-center"
+                          aria-hidden
+                        >
+                          <IconComponent
+                            className="h-8 w-8 shrink-0 stroke-[1.5]"
+                            style={{ color: "var(--hero-accent)" }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                          {card.title}
+                        </h3>
+                        <ul className="mt-3 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                          {card.items.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                  {scale.roadmap.map((phase) => (
+                    <div key={phase.phase} className="flex flex-col items-start">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                          style={{ backgroundColor: "var(--nav)" }}
+                        >
+                          {phase.phase}
+                        </div>
+                        <div>
+                          <p
+                            className="text-xs font-semibold uppercase tracking-wider"
+                            style={{ color: "var(--hero-accent)" }}
+                          >
+                            {phase.status}
+                          </p>
+                          <h4 className="font-bold tracking-tight text-foreground">
+                            {phase.title}
+                          </h4>
+                        </div>
+                      </div>
+                      <ul className="mt-4 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                        {phase.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {(() => {
             const decisions = (details as typeof details & {
               keyDesignDecisions?: {
                 label: string;
@@ -240,7 +597,7 @@ export default async function CaseStudyPage({
             if (!decisions) return null;
             return (
               <section
-                className="mt-20 pt-16 md:pt-20"
+                className="mt-12 pt-12 md:pt-14"
                 aria-label="How I Work"
               >
                 <div className="text-center">
@@ -254,7 +611,7 @@ export default async function CaseStudyPage({
                     {decisions.heading}
                   </h2>
                 </div>
-                <div className="mt-12 space-y-20">
+                <div className="mt-12 space-y-14">
                   {decisions.decisions.map((d) => (
                     <div
                       key={d.number}
@@ -357,7 +714,7 @@ export default async function CaseStudyPage({
             if (!research) return null;
             return (
               <section
-                className="mt-20 pt-16 md:pt-20"
+                className="mt-12 pt-12 md:pt-14"
                 aria-label="Research & Discovery"
               >
                 <div className="text-center">
@@ -407,7 +764,9 @@ export default async function CaseStudyPage({
           {(() => {
             const reflections = (details as typeof details & {
               reflectionsAndLearnings?: {
+                label?: string;
                 title: string;
+                layout?: string;
                 cards: (
                   | {
                       id: string;
@@ -433,114 +792,139 @@ export default async function CaseStudyPage({
                       listItems: string[];
                       closingParagraph: string;
                     }
+                  | {
+                      id: string;
+                      title: string;
+                      icon: string;
+                      before: { heading: string; items: string[] };
+                      after: { heading: string; items: string[] };
+                      closingParagraph: string;
+                    }
                 )[];
               };
             }).reflectionsAndLearnings;
             if (!reflections) return null;
+
+            const renderCard = (card: (typeof reflections.cards)[number]) => {
+              const IconComponent =
+                STRATEGIC_CHALLENGE_ICONS[card.icon] ?? Layers;
+              return (
+                <div
+                  key={card.id}
+                  className="rounded-xl bg-muted/50 p-6"
+                >
+                  <div
+                    className="flex h-10 w-10 items-center justify-center"
+                    aria-hidden
+                  >
+                    <IconComponent
+                      className="h-8 w-8 shrink-0 stroke-[1.5]"
+                      style={{ color: "var(--hero-accent)" }}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
+                    {card.title}
+                  </h3>
+                  <div className="mt-4 space-y-5">
+                    {"items" in card &&
+                      card.items.map((item) => (
+                        <div key={item.number}>
+                          <p className="text-sm font-semibold text-foreground">
+                            {item.number}. {item.heading}
+                          </p>
+                          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                            {item.body}
+                          </p>
+                        </div>
+                      ))}
+                    {"paragraphs" in card &&
+                      !("before" in card) &&
+                      card.paragraphs.map((para, i) => (
+                        <p
+                          key={i}
+                          className="text-sm text-muted-foreground leading-relaxed"
+                        >
+                          {para}
+                        </p>
+                      ))}
+                    {"listHeading" in card &&
+                      !("before" in card) && (
+                        <>
+                          <p className="text-sm font-semibold text-foreground">
+                            {card.listHeading}
+                          </p>
+                          <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                            {card.listItems.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {card.closingParagraph}
+                          </p>
+                        </>
+                      )}
+                    {"before" in card && "after" in card && (
+                      <>
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">
+                            {card.before.heading}
+                          </p>
+                          <ul className="mt-1 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                            {card.before.items.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">
+                            {card.after.heading}
+                          </p>
+                          <ul className="mt-1 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                            {card.after.items.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {card.closingParagraph}
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            };
+
             return (
               <section
-                className="mt-20 pt-16 md:pt-20"
+                className="mt-12 pt-12 md:pt-14"
                 aria-label="Reflections & Learnings"
               >
-                <h2 className="text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                  {reflections.title}
-                </h2>
+                <div className="text-center">
+                  {reflections.label && (
+                    <p
+                      className="text-xs font-semibold uppercase tracking-wider"
+                      style={{ color: "var(--nav-active)" }}
+                    >
+                      {reflections.label}
+                    </p>
+                  )}
+                  <h2 className={`text-3xl font-bold tracking-tight text-foreground md:text-4xl ${reflections.label ? "mt-2" : ""}`}>
+                    {reflections.title}
+                  </h2>
+                </div>
                 <div className="mt-12 space-y-6">
-                  {reflections.cards.slice(0, 1).map((card) => {
-                    const IconComponent =
-                      STRATEGIC_CHALLENGE_ICONS[card.icon] ?? Layers;
-                    return (
-                      <div
-                        key={card.id}
-                        className="rounded-xl bg-muted/50 p-6"
-                      >
-                        <div
-                          className="flex h-10 w-10 items-center justify-center"
-                          aria-hidden
-                        >
-                          <IconComponent
-                            className="h-8 w-8 shrink-0 stroke-[1.5]"
-                            style={{ color: "var(--hero-accent)" }}
-                            strokeWidth={1.5}
-                          />
-                        </div>
-                        <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                          {card.title}
-                        </h3>
-                        <div className="mt-4 space-y-5">
-                          {"items" in card &&
-                            card.items.map((item) => (
-                              <div key={item.number}>
-                                <p className="text-sm font-semibold text-foreground">
-                                  {item.number}. {item.heading}
-                                </p>
-                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                                  {item.body}
-                                </p>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {reflections.cards.slice(0, 1).map(renderCard)}
                   <div className="grid gap-6 sm:grid-cols-2">
-                    {reflections.cards.slice(1).map((card) => {
-                      const IconComponent =
-                        STRATEGIC_CHALLENGE_ICONS[card.icon] ?? Layers;
-                      return (
-                        <div
-                          key={card.id}
-                          className="rounded-xl bg-muted/50 p-6"
-                        >
-                          <div
-                            className="flex h-10 w-10 items-center justify-center"
-                            aria-hidden
-                          >
-                            <IconComponent
-                              className="h-8 w-8 shrink-0 stroke-[1.5]"
-                              style={{ color: "var(--hero-accent)" }}
-                              strokeWidth={1.5}
-                            />
-                          </div>
-                          <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                            {card.title}
-                          </h3>
-                          <div className="mt-4 space-y-5">
-                            {"paragraphs" in card &&
-                              card.paragraphs.map((para, i) => (
-                                <p
-                                  key={i}
-                                  className="text-sm text-muted-foreground leading-relaxed"
-                                >
-                                  {para}
-                                </p>
-                              ))}
-                            {"listHeading" in card && (
-                              <>
-                                <p className="text-sm font-semibold text-foreground">
-                                  {card.listHeading}
-                                </p>
-                                <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
-                                  {card.listItems.map((item, i) => (
-                                    <li key={i}>{item}</li>
-                                  ))}
-                                </ul>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
-                                  {card.closingParagraph}
-                                </p>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {reflections.cards.slice(1).map(renderCard)}
                   </div>
                 </div>
               </section>
             );
           })()}
 
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <Link
               href="/#case-studies"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--nav)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
