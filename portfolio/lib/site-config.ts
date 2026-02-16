@@ -410,6 +410,412 @@ export const siteConfig = {
         ],
       },
     },
+    "footwear-request-app": {
+      heroImage: "/Footwear/ShoeRunnerHeroImage.png",
+      category: "Retail Innovation",
+      title: "Footwear Request Modernization",
+      subtitle:
+        "Building the Business Case to Redesign a $2B Revenue Driver",
+      meta: {
+        role: "Lead Product Designer, Strategic Vision & Modernization Lead",
+        timeline:
+          "August 2024 - January 2025 (18+ months active modernization, ongoing optimization)",
+        team:
+          "Product Management, Engineering (RN/Kiosk), Business Analytics, Store Operations",
+        platform:
+          "Customer-facing kiosks + Associate fulfillment app across 850 stores",
+      },
+      metrics: [
+        {
+          value: "~$2B",
+          description: "in annual footwear sales enabled by this platform",
+        },
+        {
+          value: "95,000+",
+          description: "shoe requests in single day (Black Friday record)",
+        },
+        {
+          value: "+23%",
+          description: "YoY increase in kiosk request volume",
+        },
+        {
+          value: "~40M",
+          description: "shoes requested annually (FY'24)",
+        },
+        {
+          value: "Patent Protected",
+          description: "request and fulfillment system",
+        },
+      ],
+      strategicContext: [
+        "Footwear represents one of Dick's Sporting Goods' highest-margin, highest-volume categories. The ShoeRunner platform, a customer kiosk for requesting sizes + an associate app for fulfillment, has been processing tens of millions of requests annually for 7+ years.",
+        "But the platform was aging badly:",
+        {
+          bullets: [
+            "Legacy tech stack that couldn't support modern features (recommendations, personalization, inventory visibility)",
+            "Fragmented experiences across customer and associate touchpoints",
+            "No integration with newer platforms (Sideline Assist, mobile app)",
+            "Growing technical debt making even minor updates expensive and risky",
+          ],
+        },
+      ],
+      theStakes: [
+        "Stakeholders disagreed on whether platform modernization was worth the investment vs. continuing to patch the existing system.",
+        "The critical question: Could we prove that design-led modernization would unlock measurable business value, not just improve aesthetics?",
+        "The Political Reality: This wasn't a greenfield project—it was organizational change:",
+        {
+          bullets: [
+            "Engineering wanted to rebuild the entire platform (18+ month timeline)",
+            "Operations feared disruption to proven workflows during peak season",
+            "Leadership needed ROI justification before approving multi-quarter investment",
+          ],
+        },
+      ],
+      myChallenge:
+        "Build consensus across these stakeholders while designing a modernization strategy that balanced ambitious vision with pragmatic execution.",
+      strategicApproach: {
+        label: "My Strategic Approach",
+        heading: "Research-First Strategy",
+        methods: [
+          {
+            title: "In-store Ethnographic Studies",
+            icon: "smartphone",
+            details: [
+              "across 12 stores:",
+              "Observed customers struggling with kiosk navigation and request completion",
+              "Watched associates deal with fulfillment inefficiencies and poor request visibility",
+            ],
+          },
+          {
+            title: "User Interviews & Usability Testing",
+            icon: "smartphone",
+            details: [
+              "110s of feedback entries synthesized showing customer frustration with legacy kiosk UX",
+              "25+ associate interviews revealing fulfillment pain points",
+              "Specific store process variations highlighting inconsistent implementation",
+            ],
+          },
+        ],
+        keyInsight: {
+          icon: "layout-dashboard",
+          text: "The problem wasn't just old UI, it was a fragmented ecosystem where customer requests, associate workflows, and inventory systems didn't talk to each other effectively.",
+        },
+      },
+      strategicDecisionsTradeoffs: {
+        label: "Strategic Decisions & Tradeoffs",
+        heading: "Design Driven Impacts",
+        decisions: [
+          {
+            number: 1,
+            title: "Phased modernization vs. complete platform rebuild",
+            image: "/Footwear/DesignThumbnail1.png",
+            imagePosition: "left" as const,
+            blocks: [
+              {
+                heading: "The decision",
+                content:
+                  "Phased approach starting with customer kiosk, then associate app, then backend integration.",
+              },
+              {
+                heading: "Why it mattered",
+                content:
+                  "Engineering wanted a 24+ month rebuild. Operations feared disruption during holiday seasons.",
+              },
+              {
+                heading: "The strategy",
+                items: [
+                  "Phase 1: Modernize associate fulfillment app",
+                  "Phase 2: Redesign customer kiosk experience",
+                  "Phase 3: Platform integration and advanced features (personalization, inventory visibility)",
+                ],
+              },
+              {
+                heading: "The tradeoff",
+                items: [
+                  "Compromises on ideal state due to legacy constraints",
+                  "More design effort to maintain cohesion across phases",
+                  "Careful sequencing required",
+                ],
+              },
+            ],
+          },
+          {
+            number: 2,
+            title: "Associate app efficiency vs. feature richness",
+            image: "/Footwear/DesignThumbnail2.png",
+            imagePosition: "right" as const,
+            blocks: [
+              {
+                heading: "The decision",
+                content:
+                  "Prioritize speed-to-deliver & general performance improvements over adding new capabilities.",
+              },
+              {
+                heading: "Research insight",
+                content:
+                  "Associates didn't need more features – they needed better visibility and faster workflows. The legacy app hid critical information.",
+              },
+              {
+                heading: "Redesign priority",
+                items: [
+                  "Clear queue visibility",
+                  "Location intelligence (backstock, floor, other sizes)",
+                  "Smart clustering (grouping requests by stockroom location – patent-protected)",
+                  "Simple, fast checkout flow",
+                ],
+              },
+              {
+                heading: "The tradeoff",
+                items: [
+                  "Delayed parity with new features across brand experiences",
+                  "Required robust testing",
+                ],
+              },
+              {
+                heading: "The outcome",
+                items: ["Fewer fulfillment errors", "Associate satisfaction improved"],
+              },
+            ],
+          },
+          {
+            number: 3,
+            title: "When to hold ground vs. compromise",
+            image: "/Footwear/DesignThumbnail3.png",
+            imagePosition: "left" as const,
+            blocks: [
+              {
+                heading: "The challenge",
+                content:
+                  "Operations wanted to delay improvements. Finance questioned ROI of \"nice to have\" features.",
+              },
+              {
+                heading: "My approach",
+                items: [
+                  "Non-negotiables: Performance, core UX for conversion",
+                  "Negotiables: Advanced features, personalization, phasing of rollout",
+                  "Data-driven advocacy: Impact mapping for financial cases",
+                ],
+              },
+              {
+                heading: "Example",
+                content:
+                  "Operations resisted clustered request delivery. Time-motion studies proved it reduced trips by 40%. Labor savings justified the change.",
+              },
+              {
+                heading: "Lesson learned",
+                content:
+                  "Strategic design leadership means knowing when to push hard and when to compromise. Hold the line on high-impact changes; show flexibility elsewhere.",
+              },
+            ],
+          },
+        ],
+      },
+      buildingAlignment: {
+        label: "Building Alignment",
+        heading: "Cross-Functional Leadership & Influence",
+        columns: [
+          {
+            title: "Stakeholder Landscape",
+            items: [
+              "Product Management: Needed roadmap clarity and prioritization framework",
+              "Engineering: Wanted technical architecture freedom",
+              "Operations: Feared disruption and training burden",
+              "Finance: Demanded ROI justification",
+              "Store Leadership: Cared about peak season performance",
+            ],
+          },
+          {
+            title: "Research-based Storytelling",
+            items: [
+              "Journey maps showing customer frustration AND associate pain",
+              "Service blueprints connecting frontend UX to backend inefficiency",
+              "Videos of real customers abandoning kiosks",
+              "Associate quotes about fulfillment stress during peak hours",
+              "This created shared understanding of the problem space across functions.",
+            ],
+          },
+          {
+            title: "Impact Mapping & Workshops",
+            items: [
+              "Facilitated sessions where stakeholders co-created the business case",
+              "Connected each pain point to specific business metrics they cared about",
+              "Let Finance help quantify the ROI (so they owned the projections)",
+              "Gave Operations input on rollout strategy (so they felt heard)",
+            ],
+          },
+          {
+            title: "Phased Roadmap Co-creation",
+            items: [
+              "Didn't dictate the timeline—collaborated with Engineering on what was feasible",
+              "Let Operations define seasonal constraints and pilot store selection",
+              "Built in feedback loops and decision points",
+            ],
+          },
+          {
+            title: "Result",
+            items: [
+              "Full stakeholder buy-in before design execution began",
+              "Impact mapping became standard practice across Store Tech",
+              "Established me as strategic partner, not just 'the designer'",
+            ],
+          },
+        ],
+      },
+      designAtScale: {
+        label: "Driving Design at Scale",
+        heading: "Design Excellence",
+        cards: [
+          {
+            title: "Design system integration",
+            icon: "layers",
+            items: [
+              "Applied Store Tech design system for consistency across kiosk and app",
+              "Created footwear-specific patterns that other teams could reuse",
+              "Built component library that reduced engineering implementation time",
+            ],
+          },
+          {
+            title: "Responsive design for new hardware",
+            icon: "smartphone",
+            items: [
+              "New Samsung kiosks required flexible layouts",
+              "Designed for 3 screen sizes without fragmenting experience",
+              "Created scalability guidelines for future hardware upgrades",
+            ],
+          },
+          {
+            title: "Documentation and handoff:",
+            icon: "file-text",
+            items: [
+              "Detailed specs reducing engineering questions by ~60%",
+              "Interactive Figma prototypes for stakeholder review",
+              "Clear decision logs explaining design rationale",
+            ],
+          },
+        ],
+        roadmap: [
+          {
+            phase: 1,
+            title: "Associate App Modernization",
+            status: "In Progress",
+            items: [
+              "Visual product-first browsing",
+              "Responsive design for new hardware",
+              "Performance optimization",
+              "+ Result: record breaking fulfillment quantities",
+            ],
+          },
+          {
+            phase: 2,
+            title: "Customer Kiosk Redesign",
+            status: "Pending",
+            items: [
+              "Visual product-first browsing",
+              "Responsive design for new hardware",
+              "Performance optimization",
+              "+ Result: Decreased process abandonment",
+            ],
+          },
+          {
+            phase: 3,
+            title: "Platform Integration",
+            status: "Roadmap",
+            items: [
+              "Connect with Sideline Assist ecosystem",
+              "Unified customer view across kiosk, mobile, associate app",
+              "Real-time inventory visibility",
+              "Cross-platform request handoff",
+            ],
+          },
+          {
+            phase: 4,
+            title: "AI & Personalization",
+            status: "Roadmap",
+            items: [
+              "Size prediction based on purchase history",
+              "Style recommendations via AI",
+              "Dynamic inventory allocation",
+              "Predictive restocking",
+            ],
+          },
+        ],
+      },
+      reflectionsAndLearnings: {
+        label: "What I Lead",
+        title: "Reflections & Learnings",
+        layout: "stacked" as const,
+        cards: [
+          {
+            id: "what-i-learned",
+            title: "What I Learned",
+            icon: "layers",
+            items: [
+              {
+                number: 1,
+                heading: "The business case IS the design work",
+                body: "Early in my career, I thought my job was making beautiful interfaces. This project taught me that strategic design leadership is about building the case for change. The impact mapping work that unlocked budget approval was as important as the UI redesign itself.",
+              },
+              {
+                number: 2,
+                heading: "Research creates organizational alignment",
+                body: "Journey maps and service blueprints weren't just design artifacts—they were alignment tools that got Finance, Operations, and Engineering on the same page. Seeing real customer abandonment videos was more persuasive than any deck I could make.",
+              },
+              {
+                number: 3,
+                heading: "Constraints breed better solutions",
+                body: "The phased approach was born from constraints (limited eng capacity, seasonal deadlines, risk aversion). But it resulted in a smarter strategy than the big-bang rebuild would have. Ship value faster, learn continuously, build confidence.",
+              },
+              {
+                number: 4,
+                heading: "Influence requires understanding what stakeholders care about",
+                body: "Operations didn't care about pixel-perfect UI—they cared about training burden and peak season stability. Finance didn't care about user delight—they cared about ROI and payback period. I learned to frame design value in stakeholder-specific terms rather than using designer language.",
+              },
+              {
+                number: 5,
+                heading: "Impact compounds through organizational change",
+                body: "The real win wasn't the redesigned kiosk—it was establishing impact mapping as standard practice. Now other designers use these frameworks, multiplying the impact far beyond ShoeRunner. Staff-level work is about changing how the organization works, not just shipping features.",
+              },
+            ],
+          },
+          {
+            id: "what-id-do-differently",
+            title: "What I'd do Differently",
+            icon: "smartphone",
+            paragraphs: [
+              "Start platform integration sooner: We designed Phases 1 & 2 somewhat independently, then realized we needed tighter integration with Sideline Assist and loyalty. If I'd engaged those teams earlier, we could have designed for the ecosystem from day one.",
+              "Build in more feedback loops post-launch: We shipped, celebrated the Black Friday record, and moved on to the next thing. I wish I'd built in quarterly optimization cycles to continuously improve based on usage data. There are probably easy wins we're leaving on the table.",
+              "Document decisions more systematically: We made hundreds of design and strategy decisions, but not all were well-documented. Future designers would benefit from better decision logs explaining the \"why\" behind choices.",
+              "Push harder on A/B testing: We used analytics heavily but didn't do much experimentation. I should have advocated for testing different kiosk flows or associate app approaches to optimize faster.",
+            ],
+          },
+          {
+            id: "impacts-on-process",
+            title: "Impacts on my Process",
+            icon: "layout-dashboard",
+            before: {
+              heading: "Before ShoeRunner",
+              items: [
+                "Focused on craft and execution",
+                "Led with mockups and prototypes",
+                "Assumed stakeholders understood design value",
+              ],
+            },
+            after: {
+              heading: "After ShoeRunner",
+              items: [
+                "Lead with business case and ROI",
+                "Use research to build organizational alignment",
+                "Frame design value in stakeholder-specific language",
+                "Think in platforms and ecosystems, not just features",
+                "Measure success in business metrics, not just UX metrics",
+              ],
+            },
+            closingParagraph:
+              "ShoeRunner proved that design leadership at scale requires equal parts craft, strategy, and organizational influence. The most beautiful redesign means nothing if you can't build the case for it, align stakeholders, and prove it moves the business.",
+          },
+        ],
+      },
+    },
   } as const,
 
   productStrategy: {
