@@ -154,9 +154,10 @@ export default async function CaseStudyPage({
                 Strategic Context
               </h3>
               <div className="mt-4 space-y-4">
-                {(Array.isArray(details.strategicContext)
-                  ? details.strategicContext
-                  : [details.strategicContext]
+                {(
+                  (Array.isArray(details.strategicContext)
+                    ? details.strategicContext
+                    : [details.strategicContext]) as (string | { bullets: string[] })[]
                 ).map((item, i) =>
                   typeof item === "string" ? (
                     <p
@@ -188,10 +189,19 @@ export default async function CaseStudyPage({
               </h3>
               <div className="mt-4 space-y-4">
                 {(
-                  (details as { theStakes?: (string | { bullets: string[] })[] })
-                    .theStakes ?? (Array.isArray(details.businessProblem)
-                    ? details.businessProblem
-                    : [details.businessProblem])
+                  (
+                    (details as unknown) as {
+                      theStakes?: (string | { bullets: string[] })[];
+                      businessProblem?: string | string[];
+                    }
+                  ).theStakes ??
+                  (() => {
+                    const d = details as unknown as {
+                      businessProblem?: string | string[];
+                    };
+                    const bp = d.businessProblem;
+                    return Array.isArray(bp) ? bp : bp != null ? [bp] : [];
+                  })()
                 ).map((item: string | { bullets: string[] }, i: number) =>
                   typeof item === "string" ? (
                     <p
@@ -1230,50 +1240,46 @@ export default async function CaseStudyPage({
           })()}
 
           {(() => {
-            const reflections = (details as typeof details & {
+            type ReflectionCard =
+              | {
+                  id: string;
+                  title: string;
+                  icon: string;
+                  items: { number: number; heading: string; body: string }[];
+                }
+              | {
+                  id: string;
+                  title: string;
+                  icon: string;
+                  paragraphs: string[];
+                }
+              | {
+                  id: string;
+                  title: string;
+                  icon: string;
+                  listHeading: string;
+                  listItems: string[];
+                  closingParagraph: string;
+                }
+              | {
+                  id: string;
+                  title: string;
+                  icon: string;
+                  before: { heading: string; items: string[] };
+                  after: { heading: string; items: string[] };
+                  closingParagraph: string;
+                };
+            const reflections = (details as unknown as {
               reflectionsAndLearnings?: {
                 label?: string;
                 title: string;
                 layout?: string;
-                cards: (
-                  | {
-                      id: string;
-                      title: string;
-                      icon: string;
-                      items: {
-                        number: number;
-                        heading: string;
-                        body: string;
-                      }[];
-                    }
-                  | {
-                      id: string;
-                      title: string;
-                      icon: string;
-                      paragraphs: string[];
-                    }
-                  | {
-                      id: string;
-                      title: string;
-                      icon: string;
-                      listHeading: string;
-                      listItems: string[];
-                      closingParagraph: string;
-                    }
-                  | {
-                      id: string;
-                      title: string;
-                      icon: string;
-                      before: { heading: string; items: string[] };
-                      after: { heading: string; items: string[] };
-                      closingParagraph: string;
-                    }
-                )[];
+                cards: ReflectionCard[];
               };
             }).reflectionsAndLearnings;
             if (!reflections) return null;
 
-            const renderCard = (card: (typeof reflections.cards)[number]) => {
+            const renderCard = (card: ReflectionCard) => {
               const IconComponent =
                 STRATEGIC_CHALLENGE_ICONS[card.icon] ?? Layers;
               return (
@@ -1296,48 +1302,60 @@ export default async function CaseStudyPage({
                   </h3>
                   <div className="mt-4 space-y-5">
                     {"items" in card &&
-                      (card.items.length >= 4 ? (
-                        <div className="grid gap-6 sm:grid-cols-2">
-                          <div className="space-y-5">
-                            {card.items.slice(0, Math.ceil(card.items.length / 2)).map((item) => (
-                              <div key={item.number}>
-                                <p className="text-sm font-semibold text-foreground">
-                                  {item.number}. {item.heading}
-                                </p>
-                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                                  {item.body}
-                                </p>
-                              </div>
-                            ))}
+                      (() => {
+                        type Item = {
+                          number: number;
+                          heading: string;
+                          body: string;
+                        };
+                        const items = card.items as Item[];
+                        return items.length >= 4 ? (
+                          <div className="grid gap-6 sm:grid-cols-2">
+                            <div className="space-y-5">
+                              {items
+                                .slice(0, Math.ceil(items.length / 2))
+                                .map((item) => (
+                                  <div key={item.number}>
+                                    <p className="text-sm font-semibold text-foreground">
+                                      {item.number}. {item.heading}
+                                    </p>
+                                    <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                                      {item.body}
+                                    </p>
+                                  </div>
+                                ))}
+                            </div>
+                            <div className="space-y-5">
+                              {items
+                                .slice(Math.ceil(items.length / 2))
+                                .map((item) => (
+                                  <div key={item.number}>
+                                    <p className="text-sm font-semibold text-foreground">
+                                      {item.number}. {item.heading}
+                                    </p>
+                                    <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                                      {item.body}
+                                    </p>
+                                  </div>
+                                ))}
+                            </div>
                           </div>
-                          <div className="space-y-5">
-                            {card.items.slice(Math.ceil(card.items.length / 2)).map((item) => (
-                              <div key={item.number}>
-                                <p className="text-sm font-semibold text-foreground">
-                                  {item.number}. {item.heading}
-                                </p>
-                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                                  {item.body}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        card.items.map((item) => (
-                          <div key={item.number}>
-                            <p className="text-sm font-semibold text-foreground">
-                              {item.number}. {item.heading}
-                            </p>
-                            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                              {item.body}
-                            </p>
-                          </div>
-                        ))
-                      ))}
+                        ) : (
+                          items.map((item) => (
+                            <div key={item.number}>
+                              <p className="text-sm font-semibold text-foreground">
+                                {item.number}. {item.heading}
+                              </p>
+                              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                                {item.body}
+                              </p>
+                            </div>
+                          ))
+                        );
+                      })()}
                     {"paragraphs" in card &&
                       !("before" in card) &&
-                      card.paragraphs.map((para, i) => (
+                      (card.paragraphs as string[]).map((para, i) => (
                         <p
                           key={i}
                           className="text-sm text-muted-foreground leading-relaxed"
@@ -1352,7 +1370,7 @@ export default async function CaseStudyPage({
                             {card.listHeading}
                           </p>
                           <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
-                            {card.listItems.map((item, i) => (
+                            {(card.listItems as string[]).map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
