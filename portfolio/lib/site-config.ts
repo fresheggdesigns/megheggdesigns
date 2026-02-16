@@ -999,6 +999,188 @@ export const siteConfig = {
           ],
         },
       },
+      featureRedesign: {
+        label: "FEATURE REDESIGN",
+        problemHeading: "The Problem: Cognitive Overload at Scale",
+        problemDescription:
+          "The Automations tool was powerful but nearly unusable. It allowed event managers to create complex rules for attendee engagement. Example use case: 'Query all registered attendees → Filter for those who interacted with gamification → Award top 50 with prizes.'",
+        images: [
+          "/LiveEventTech/OriginalDesign1.png",
+          "/LiveEventTech/Redesign1.png",
+          "/LiveEventTech/PainPointsImage3.png",
+        ] as [string?, string?, string?],
+        currentStateProblems: [
+          "Overwhelming interface: 40+ input fields visible simultaneously",
+          "No progressive disclosure: All configuration options exposed at once",
+          "Unclear flow: Users didn't know where to start or what order to complete steps",
+          "Cryptic error messages: Failed validations with no clear guidance",
+          "Minimal contextual help: Users relied on external documentation",
+        ],
+        businessImpact: [
+          "4-6 week training requirement for new clients",
+          "High support burden: Repeated questions about the same workflows",
+          "Client frustration: 'Powerful but impossible to use'",
+          "Limited adoption: Many clients avoided the feature entirely",
+        ],
+      },
+      redesignVsRebuild: {
+        title: "Redesign vs Rebuild",
+        options: [
+          {
+            label: "OPTION A",
+            title: "Incremental improvements to existing interface",
+            pros: ["Lower risk, faster to ship"],
+            cons: ["Wouldn't solve fundamental cognitive overload"],
+          },
+          {
+            label: "OPTION B",
+            title: "Complete rebuild with new data model",
+            pros: ["Clean slate, could optimize everything"],
+            cons: ["12+ month timeline, high technical risk"],
+          },
+          {
+            label: "OPTION C",
+            title: "Stepwise wizard interface",
+            pros: [
+              "Drastically reduces cognitive load through chunking",
+              "Reuses existing data model (lower eng investment)",
+              "Progressive disclosure guides users through complexity",
+            ],
+            cons: ["Requires changing user mental model"],
+            selected: true,
+          },
+        ],
+        justification:
+          "Why I advocated for Option C: The core problem wasn't the data model, it was information architecture and presentation. A wizard could deliver **80% of the value** with **30% of the engineering cost.**",
+        steps: [
+          {
+            number: 1,
+            title: "Chunking through stepped progression",
+            description: "Broke the monolithic form into discrete steps:",
+            items: [
+              "Step 1: Define audience (who are you targeting?)",
+              "Step 2: Set conditions (what criteria must they meet?)",
+              "Step 3: Configure action (what happens to them?)",
+              "Step 4: Review & schedule (when does this run?)",
+            ],
+          },
+          {
+            number: 2,
+            title: "Contextual help at every step",
+            items: [
+              "Inline tooltips explaining complex concepts",
+              "Example use cases showing common patterns",
+              "Visual previews of what will happen",
+            ],
+          },
+          {
+            number: 3,
+            title: "Intelligent error handling",
+            description: "Real-time validation preventing bad states",
+            items: [
+              "Clear error messages with specific fixes",
+              "Visual indicators on which step has issues",
+            ],
+          },
+          {
+            number: 4,
+            title: "Progressive disclosure",
+            description: "Show only relevant fields based on previous choices",
+            items: [
+              "Advanced options hidden behind \"Show more\" patterns",
+              "Simplified defaults for common use cases",
+            ],
+          },
+        ],
+      },
+      measurableOutcomes: {
+        label: "MEASURABLE OUTCOMES",
+        outcomes: [
+          {
+            title: "Reduced training time",
+            description:
+              "from 4-6 weeks to 2-3 weeks (estimated—need to verify)",
+          },
+          {
+            title: "Improved user confidence",
+            description: "in post-launch surveys",
+          },
+          {
+            title: "Reduced support tickets",
+            description: "for Automations feature",
+          },
+          {
+            title: "Increased adoption",
+            description: "of advanced automation capabilities",
+          },
+          {
+            title: "Positive client feedback",
+            description: "on ease of use",
+          },
+        ],
+      },
+      reflectionsAndLearnings: {
+        title: "Reflections & Learnings",
+        cards: [
+          {
+            id: "what-i-learned",
+            title: "What I Learned",
+            icon: "layers",
+            items: [
+              {
+                number: 1,
+                heading: "Field research creates organizational buy-in",
+                body: "Showing video from real events was more persuasive than any deck. Stakeholders who had resisted UX investment shifted when they saw actual users struggling.",
+              },
+              {
+                number: 2,
+                heading: "Complex doesn't have to mean complicated",
+                body: "The Automations tool was inherently complex, but information architecture and progressive disclosure could make it manageable. Chunking and wizard patterns turned a 40-field form into a guided flow.",
+              },
+              {
+                number: 3,
+                heading: "Research is a product",
+                body: "Research readouts, journey maps, and synthesis materials became strategic assets. Making them discoverable and reusable helped align product, engineering, and client success.",
+              },
+              {
+                number: 4,
+                heading: "Mobile-first is a mindset, not just responsive design",
+                body: "82% mobile usage meant we had to rethink workflows for touch, glanceability, and offline constraints—not just scale down desktop layouts.",
+              },
+              {
+                number: 5,
+                heading: "Change management requires storytelling",
+                body: "Connecting user problems to business outcomes (training cost, support burden, adoption) was how I justified UX investment to leadership. Evidence + narrative drove decisions.",
+              },
+            ],
+          },
+          {
+            id: "what-id-do-differently",
+            title: "What I'd do Differently",
+            icon: "smartphone",
+            paragraphs: [
+              "Push for more quantitative baseline metrics earlier so we could measure impact (e.g., support ticket volume, time-to-first-automation) before and after the redesign.",
+              "Create a research repository so insights from NFL, Disney, and Live Nation studies were discoverable and reusable across the org.",
+              "Document design decisions more systematically so future teams could understand the rationale behind the wizard approach and tradeoffs we made.",
+            ],
+          },
+          {
+            id: "impacts-on-career",
+            title: "Impacts on my Career",
+            icon: "layout-dashboard",
+            listHeading: "This role helped me:",
+            listItems: [
+              "Build research programs from scratch in organizations without research maturity",
+              "Drive strategic influence through evidence and storytelling",
+              "Redesign complex enterprise tools while managing stakeholder expectations",
+              "Present to executives and frame UX work in business terms",
+              "Work in high-pressure, high-stakes environments (live events with zero room for error)",
+            ],
+            closingParagraph:
+              "Live Event Technology at Leap was a turning point in how I approach research, complexity, and organizational change.",
+          },
+        ],
+      },
     },
   } as const,
 

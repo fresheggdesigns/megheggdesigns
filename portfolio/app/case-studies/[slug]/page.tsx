@@ -3,12 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   BarChart2,
+  Check,
   FileText,
   Layers,
   LayoutDashboard,
   LayoutGrid,
   Lightbulb,
+  Monitor,
   Smartphone,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
@@ -474,6 +477,288 @@ export default async function CaseStudyPage({
                     </div>
                   </div>
                 )}
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const featureRedesign = (details as typeof details & {
+              featureRedesign?: {
+                label: string;
+                problemHeading?: string;
+                problemDescription?: string;
+                images: [string?, string?, string?];
+                currentStateProblems?: string[];
+                businessImpact?: string[];
+              };
+            }).featureRedesign;
+            if (!featureRedesign) return null;
+            const [imgTopLeft, imgTopRight, imgMiddle] = featureRedesign.images ?? [];
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Feature Redesign"
+              >
+                <h2
+                  className="text-2xl font-bold tracking-tight md:text-3xl"
+                  style={{ color: "var(--hero-accent)" }}
+                >
+                  {featureRedesign.label}
+                </h2>
+
+                <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                  {imgTopLeft ? (
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                      <Image
+                        src={imgTopLeft}
+                        alt=""
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex aspect-video items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
+                      Image 1
+                    </div>
+                  )}
+                  {imgTopRight ? (
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                      <Image
+                        src={imgTopRight}
+                        alt=""
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex aspect-video items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
+                      Image 2
+                    </div>
+                  )}
+                </div>
+
+                {(featureRedesign.problemHeading || featureRedesign.problemDescription) && (
+                  <div className="mt-8 text-center">
+                    {featureRedesign.problemHeading && (
+                      <h3 className="text-xl font-bold tracking-tight text-foreground">
+                        {featureRedesign.problemHeading}
+                      </h3>
+                    )}
+                    {featureRedesign.problemDescription && (
+                      <p className="mx-auto mt-3 max-w-3xl text-muted-foreground leading-relaxed">
+                        {featureRedesign.problemDescription}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-12 lg:items-start">
+                  <div className="space-y-4">
+                    {imgMiddle ? (
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
+                        <Image
+                          src={imgMiddle}
+                          alt=""
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
+                        Image 3
+                      </div>
+                    )}
+                  </div>
+                  <div className="space-y-8">
+                    {featureRedesign.currentStateProblems && featureRedesign.currentStateProblems.length > 0 && (
+                      <div>
+                        <h4 className="text-base font-bold tracking-tight text-foreground">
+                          Current State Problems
+                        </h4>
+                        <ul className="mt-3 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                          {featureRedesign.currentStateProblems.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {featureRedesign.businessImpact && featureRedesign.businessImpact.length > 0 && (
+                      <div>
+                        <h4 className="text-base font-bold tracking-tight text-foreground">
+                          Business Impact
+                        </h4>
+                        <ul className="mt-3 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                          {featureRedesign.businessImpact.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const redesignVsRebuild = (details as typeof details & {
+              redesignVsRebuild?: {
+                title: string;
+                options: {
+                  label: string;
+                  title: string;
+                  pros: string[];
+                  cons: string[];
+                  selected?: boolean;
+                }[];
+                justification: string;
+                steps: {
+                  number: number;
+                  title: string;
+                  description?: string;
+                  items: string[];
+                }[];
+              };
+            }).redesignVsRebuild;
+            if (!redesignVsRebuild) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Redesign vs Rebuild"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <Monitor
+                    className="h-8 w-8 shrink-0"
+                    style={{ color: "var(--hero-accent)" }}
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                    {redesignVsRebuild.title}
+                  </h2>
+                </div>
+
+                <div className="mt-10 grid gap-8 sm:grid-cols-3">
+                  {redesignVsRebuild.options.map((option) => (
+                    <div
+                      key={option.label}
+                      className={`rounded-xl border p-6 ${
+                        option.selected
+                          ? "border-[var(--hero-accent)] bg-[var(--hero-accent)]/5"
+                          : "border-border bg-background"
+                      }`}
+                    >
+                      <p
+                        className="text-sm font-bold uppercase tracking-wider"
+                        style={{ color: "var(--hero-accent)" }}
+                      >
+                        {option.label}
+                        {option.selected && (
+                          <span className="ml-1 font-bold">+ SELECTED</span>
+                        )}
+                      </p>
+                      <h3 className="mt-2 text-base font-bold tracking-tight text-foreground">
+                        {option.title}
+                      </h3>
+                      <ul className="mt-4 space-y-2">
+                        {option.pros.map((pro, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-600" aria-hidden />
+                            <span>{pro}</span>
+                          </li>
+                        ))}
+                        {option.cons.map((con, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <X className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden />
+                            <span>{con}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10 rounded-xl bg-muted/40 p-6">
+                  <p className="text-muted-foreground leading-relaxed">
+                    {redesignVsRebuild.justification.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+                      part.startsWith("**") && part.endsWith("**") ? (
+                        <strong key={i} className="font-semibold text-foreground">
+                          {part.slice(2, -2)}
+                        </strong>
+                      ) : (
+                        part
+                      )
+                    )}
+                  </p>
+                </div>
+
+                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                  {redesignVsRebuild.steps.map((step) => (
+                    <div key={step.number} className="rounded-xl p-6">
+                      <p
+                        className="text-sm font-bold uppercase tracking-wider"
+                        style={{ color: "var(--hero-accent)" }}
+                      >
+                        STEP {step.number}
+                      </p>
+                      <h3 className="mt-2 text-base font-bold tracking-tight text-foreground">
+                        {step.title}
+                      </h3>
+                      {step.description && (
+                        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
+                      )}
+                      <ul className="mt-3 list-disc space-y-1 pl-4 text-sm text-muted-foreground leading-relaxed">
+                        {step.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {(() => {
+            const outcomes = (details as typeof details & {
+              measurableOutcomes?: {
+                label: string;
+                outcomes: { title: string; description: string }[];
+              };
+            }).measurableOutcomes;
+            if (!outcomes) return null;
+            return (
+              <section
+                className="mt-12 pt-12 md:pt-14"
+                aria-label="Measurable Outcomes"
+              >
+                <h2
+                  className="text-xs font-semibold uppercase tracking-wider"
+                  style={{ color: "var(--hero-accent)" }}
+                >
+                  {outcomes.label}
+                </h2>
+                <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {outcomes.outcomes.map((outcome, i) => (
+                    <div
+                      key={i}
+                      className="rounded-xl p-6 text-white"
+                      style={{ backgroundColor: "var(--nav)" }}
+                    >
+                      <p className="text-lg font-bold tracking-tight md:text-xl">
+                        {outcome.title}
+                      </p>
+                      <p className="mt-2 text-sm text-white/90 leading-relaxed">
+                        {outcome.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </section>
             );
           })()}
@@ -1011,15 +1296,44 @@ export default async function CaseStudyPage({
                   </h3>
                   <div className="mt-4 space-y-5">
                     {"items" in card &&
-                      card.items.map((item) => (
-                        <div key={item.number}>
-                          <p className="text-sm font-semibold text-foreground">
-                            {item.number}. {item.heading}
-                          </p>
-                          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                            {item.body}
-                          </p>
+                      (card.items.length >= 4 ? (
+                        <div className="grid gap-6 sm:grid-cols-2">
+                          <div className="space-y-5">
+                            {card.items.slice(0, Math.ceil(card.items.length / 2)).map((item) => (
+                              <div key={item.number}>
+                                <p className="text-sm font-semibold text-foreground">
+                                  {item.number}. {item.heading}
+                                </p>
+                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                                  {item.body}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="space-y-5">
+                            {card.items.slice(Math.ceil(card.items.length / 2)).map((item) => (
+                              <div key={item.number}>
+                                <p className="text-sm font-semibold text-foreground">
+                                  {item.number}. {item.heading}
+                                </p>
+                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                                  {item.body}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
+                      ) : (
+                        card.items.map((item) => (
+                          <div key={item.number}>
+                            <p className="text-sm font-semibold text-foreground">
+                              {item.number}. {item.heading}
+                            </p>
+                            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                              {item.body}
+                            </p>
+                          </div>
+                        ))
                       ))}
                     {"paragraphs" in card &&
                       !("before" in card) &&
