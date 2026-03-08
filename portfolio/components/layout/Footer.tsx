@@ -52,7 +52,7 @@ export function Footer() {
             aria-label={`${siteConfig.name} - Home`}
           >
             <Image
-              src="/megHegg-Logo.png"
+              src="/megHegg-Logo-Medium.png"
               alt=""
               width={48}
               height={48}
