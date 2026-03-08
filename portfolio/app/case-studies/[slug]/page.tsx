@@ -15,6 +15,13 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import {
+  AnimatedSection,
+  AnimatedStaggerGrid,
+  AnimatedStaggerItem,
+  AnimatedHeroContent,
+  AnimatedHeroImage,
+} from "@/components/case-studies/CaseStudyAnimations";
 
 const STRATEGIC_CHALLENGE_ICONS: Record<string, LucideIcon> = {
   layers: Layers,
@@ -62,7 +69,7 @@ export default async function CaseStudyPage({
       {/* Hero */}
       <section className="px-6 pt-6 pb-4 md:pt-10 md:pb-6">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
+          <AnimatedHeroContent>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#33b8bc]">
               {details.category}
             </p>
@@ -96,8 +103,8 @@ export default async function CaseStudyPage({
                 </div>
               )}
             </dl>
-          </div>
-          <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+          </AnimatedHeroContent>
+          <AnimatedHeroImage className="relative aspect-[3/4] overflow-hidden rounded-xl">
             <Image
               src={imageSrc}
               alt=""
@@ -106,12 +113,12 @@ export default async function CaseStudyPage({
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </div>
+          </AnimatedHeroImage>
         </div>
       </section>
 
       {/* Impact at a Glance */}
-      <section
+      <AnimatedSection
         className="bg-white px-6 pt-8 pb-12"
         aria-label="Impact at a Glance"
       >
@@ -122,25 +129,26 @@ export default async function CaseStudyPage({
           >
             Impact at a Glance
           </h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatedStaggerGrid className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {details.metrics.map((metric) => (
-              <div
-                key={metric.description}
-                className="rounded-xl p-6 text-white"
-                style={{ backgroundColor: "var(--nav)" }}
-              >
-                <p className="text-2xl font-bold md:text-3xl">{metric.value}</p>
-                <p className="mt-2 text-sm font-normal text-white/90">
-                  {metric.description}
-                </p>
-              </div>
+              <AnimatedStaggerItem key={metric.description}>
+                <div
+                  className="rounded-xl p-6 text-white"
+                  style={{ backgroundColor: "var(--nav)" }}
+                >
+                  <p className="text-2xl font-bold md:text-3xl">{metric.value}</p>
+                  <p className="mt-2 text-sm font-normal text-white/90">
+                    {metric.description}
+                  </p>
+                </div>
+              </AnimatedStaggerItem>
             ))}
-          </div>
+          </AnimatedStaggerGrid>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Business Challenge */}
-      <section className="px-6 py-12 md:py-16">
+      <AnimatedSection className="px-6 py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2
             className="text-xs font-semibold uppercase tracking-wider"
@@ -1448,7 +1456,7 @@ export default async function CaseStudyPage({
             </Link>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </article>
   );
 }

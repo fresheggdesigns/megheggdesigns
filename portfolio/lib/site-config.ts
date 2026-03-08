@@ -23,7 +23,7 @@ export const siteConfig = {
   about: {
     label: "BACKGROUND",
     heading: "About Me",
-    bio: "8+ years designing products across retail, events, and fintech. When I'm not working... I'm still working (on side projects) including 3D modeling in Blender, painting punny pet portraits and custom sneakers for my Etsy Shop: Fresh Egg Designs.",
+    bio: "8+ years designing products across retail, events, and fintech. When I'm not working… I'm still working (on side projects) including 3D modeling in Blender, experimenting with tooling & AI, or painting punny pet portraits for my Etsy Shop: Fresh Egg Designs.",
     experience: [
       {
         company: "BBVA Compass",
@@ -61,8 +61,8 @@ export const siteConfig = {
         description:
           "Spearheading a first of its kind, Golf Performance program using body motion capture and ground force data to create the most robust data pipeline in sport.",
         bullets: [
-          "Leading Vendor Partnerships",
-          "2 web applications",
+          "Supporting Vendor Partnerships",
+          "Leading design for 2 React Web & PWA applications",
           "Initial Pilot testing in 6 stores",
         ],
         icon: "layers",
@@ -87,7 +87,7 @@ export const siteConfig = {
         bullets: [
           "25% adoption increase (FY'24)",
           "40% reduction in component redundancy",
-          "2-week average delivery time reduction",
+          "Establishing scalable patterns utilizing semantic theming",
         ],
         icon: "layout-dashboard",
       },
@@ -153,8 +153,8 @@ export const siteConfig = {
         title: "Clientelling App",
         category: "Sales & Service",
         description:
-          "Transformed complex workflow tool through chunking and progressive disclosure, dramatically improving training and adoption.",
-        impact: "XX% training time reduction | XX% error reduction | Power user satisfaction",
+          "Modernized a legacy application to better support customer relations when shopping for sporting goods. Provided rich product context & framed decision making, dramatically improving training and adoption.",
+        impact: "+32% DAU | -125% load speeds | Power user satisfaction",
         image: "/CaseStudyThumbnails/ClientellingThumbnail.png",
         href: "/case-studies/clientelling-app",
       },
@@ -173,8 +173,8 @@ export const siteConfig = {
         title: "Live Event Technology",
         category: "Enterprise Platform Transformation",
         description:
-          "Drove UX strategy through field research at NFL, Disney, and Live Nation—redesigning complex automation tools into guided flows that cut training time and support burden.",
-        impact: "Training time 4-6 → 2-3 weeks | Reduced support tickets | Increased adoption | Positive client feedback",
+          "Transformed complex workflow tool through chunking and progressive disclosure, dramatically improving training and adoption.",
+        impact: "Reduced support tickets | Increased feature adoption | Positive client feedback",
         image: "/CaseStudyThumbnails/LiveEventThumbnail.png",
         href: "/case-studies/live-event-technology",
       },
@@ -190,7 +190,7 @@ export const siteConfig = {
         "Scaling Sales & Service Across 800+ Stores Through Strategic Product Vision",
       meta: {
         role: "Lead Product Designer, Strategic Vision & Research",
-        timeline: "August 2024 - January 2025",
+        timeline: "August 2024 - January 2026",
         team: "Product Management, Engineering, Store Operations",
         platform:
           "React Native Application for 850 Dick's Sporting Goods stores.",
@@ -1241,6 +1241,8 @@ export const siteConfig = {
     social: [
       { name: "LinkedIn", href: "https://www.linkedin.com/in/megan-m-eberle", icon: "linkedin" },
     ] as const,
+    attribution:
+      "Portfolio Site design by Me & built using AI-assisted development (Cursor + Claude)",
     copyright: `© ${new Date().getFullYear()} Meg Hegg Design. All rights reserved.`,
   },
 

@@ -62,22 +62,27 @@ export function Footer() {
           <p className="text-sm text-white/80">
             {siteConfig.footer.description}
           </p>
-          <div className="flex items-center gap-4">
-            {siteConfig.footer.social.map((link) => {
-              const IconComponent = ICON_MAP[link.icon];
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--nav)] rounded"
-                  aria-label={link.name}
-                >
-                  <IconComponent className="h-5 w-5" />
-                </Link>
-              );
-            })}
+          <div className="flex flex-col items-center gap-2 md:items-start">
+            <div className="flex items-center gap-4">
+              {siteConfig.footer.social.map((link) => {
+                const IconComponent = ICON_MAP[link.icon];
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/80 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--nav)] rounded"
+                    aria-label={link.name}
+                  >
+                    <IconComponent className="h-5 w-5" />
+                  </Link>
+                );
+              })}
+            </div>
+            <p className="text-xs text-white/50">
+              {siteConfig.footer.attribution}
+            </p>
           </div>
         </div>
         <p className="text-sm text-white/60 md:self-end">
